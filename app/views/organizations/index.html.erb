@@ -1,6 +1,12 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Organizations</h1>
+<%= form_for :organization, method: :get, url: organizations_path do |f| %>
+  <div>
+    <%= f.label :search_name %>
+    <%= f.text_field :search_name%>
+  </div>
+  <%= f.submit 'Search'%>
+<% end %>
 
 <table>
   <thead>
@@ -19,21 +25,23 @@
   </thead>
 
   <tbody>
-    <% @organizations.each do |organization| %>
-      <tr>
-        <td><%= organization.name %></td>
-        <td><%= organization.address %></td>
-        <td><%= organization.overview %></td>
-        <td><%= organization.employees %></td>
-        <td><%= organization.tech_team_size %></td>
-        <td><%= organization.website %></td>
-        <td><%= organization.twitter %></td>
-        <td><%= organization.logo %></td>
-        <td><%= organization.published %></td>
-        <td><%= link_to 'Show', organization %></td>
-        <td><%#= link_to 'Edit', edit_organization_path(organization) %></td>
-        <td><%= link_to 'Destroy', organization, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
+    <% if @organizations %>
+      <% @organizations.each do |organization| %>
+        <tr>
+          <td><%= organization.name %></td>
+          <td><%= organization.address %></td>
+          <td><%= organization.overview %></td>
+          <td><%= organization.employees %></td>
+          <td><%= organization.tech_team_size %></td>
+          <td><%= organization.website %></td>
+          <td><%= organization.twitter %></td>
+          <td><%= organization.logo %></td>
+          <td><%= organization.published %></td>
+          <td><%= link_to 'Show', organization %></td>
+          <td><%#= link_to 'Edit', edit_organization_path(organization) %></td>
+          <td><%= link_to 'Destroy', organization, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        </tr>
+      <% end %>
     <% end %>
   </tbody>
 </table>

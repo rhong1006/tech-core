@@ -1,0 +1,8 @@
+<h1>Search Organizations</h1>
+<%= form_for :organization, method: :get, url: organizations_path do |f| %>
+  <div>
+    <%= f.label :search_name %>
+    <%= f.text_field :search_name%>
+  </div>
+  <%= f.submit 'Search'%>
+<% end %>

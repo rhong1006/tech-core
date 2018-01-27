@@ -4,7 +4,14 @@ class OrganizationsController < ApplicationController
   # GET /organizations
   # GET /organizations.json
   def index
-    @organizations = Organization.all
+    keyword =  params[:search_name]
+    if keyword == "Joyce Kinney"
+      puts"========================================"
+      # @organizations = Organization.search("Joyce")
+      @organizations = Organization.search(keyword)
+    else
+        @organizations = Organization.all
+    end
   end
 
   # GET /organizations/1
@@ -61,6 +68,14 @@ class OrganizationsController < ApplicationController
     end
   end
 
+  def filtered_organizations
+
+  end
+
+  def search_by
+    puts params[:search_name]
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_organization
@@ -69,6 +84,6 @@ class OrganizationsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def organization_params
-      params.require(:organization).permit(:name, :address, :overview, :employees, :tech_team_size, :website, :twitter, :logo, :published)
+      params.require(:organization).permit(:search_name, :name, :address, :overview, :employees, :tech_team_size, :website, :twitter, :logo, :published)
     end
 end

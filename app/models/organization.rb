@@ -3,4 +3,10 @@ class Organization < ApplicationRecord
   has_many :tags, through: :taggings
   has_many :taggings, dependent: :destroy
   has_many :events
+
+
+  scope :search, -> (name) {
+    where("name ILIKE  '%#{name}%'")
+  }
+
 end
