@@ -4,6 +4,7 @@ User.destroy_all
 
 PASSWORD = '123'
 
+# Seeding Super_User
 super_user = User.create(
   first_name: 'a',
   last_name: 'a',
@@ -12,6 +13,7 @@ super_user = User.create(
   is_admin: true
 )
 
+# Seeding User
 80.times.each do
   first_name = Faker::Name.first_name
   last_name = Faker::Name.last_name
@@ -28,7 +30,7 @@ users = User.all
 
 puts Cowsay.say("Create #{users.count} users", :tux)
 
-
+# Seeding Organization
 users.each do |user|
   Organization.create(
     name: Faker::FamilyGuy.character,
@@ -47,6 +49,8 @@ end
 organizations = Organization.all
 puts Cowsay.say("Created #{organizations.count} organizations", :ghostbusters)
 
+
+# Seeding Events
 organizations.each do |organization|
   rand(1..3).times.each do
     s_t = rand(0..1000)
@@ -63,9 +67,10 @@ end
 
 
 events = Event.all
-
 puts Cowsay.say("Create #{events.count} events", :moose)
 
+
+# Seeding Tags
 ["Javascript", "Java", "Ruby", "Rails", "HTML", "CSS"].each do |t|
   Tag.create(
     name: t
@@ -75,6 +80,8 @@ end
 tags = Tag.all
 puts "===================Create #{tags.count} tags====================="
 
+
+# Seeding Taggings
 organizations.each do |organization|
   rand(1..3).times.each do
     Tagging.create(
@@ -87,4 +94,4 @@ end
 taggings = Tagging.all
 puts "===================Create #{taggings.count} taggings====================="
 
-puts "Use #{super_user.email} and #{PASSWORD} for testing"
+puts ">>>>>>>>>>>>>>>>>Use #{super_user.email} and #{PASSWORD} for testing<<<<<<<<<<<<<<<<<<<"

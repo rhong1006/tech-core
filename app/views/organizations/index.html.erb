@@ -8,6 +8,25 @@
   <%= f.submit 'Search'%>
 <% end %>
 
+
+<%= form_for :organization, method: :get, url: organizations_path do |f| %>
+  <div>
+    <%= f.label :tags %> <br />
+    <%= f.collection_select(
+     :tag_ids,
+     Tag.order(:name),
+     :id,
+     :name,
+     {},
+     {
+       multiple: true,
+       class: 'chosen-select'
+     }
+    ) %>
+  </div>
+  <%= f.submit 'Search'%>
+<% end %>
+
 <table>
   <thead>
     <tr>
