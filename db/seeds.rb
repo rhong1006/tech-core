@@ -76,9 +76,10 @@ puts Cowsay.say("Created #{events.count} events", :moose)
   )
 end
 
+
 puts "Use #{super_user.email} and #{PASSWORD} for testing"
 
-
+tags = Tag.all
 # Seeding Taggings
 organizations.each do |organization|
   rand(1..3).times.each do
