@@ -15,7 +15,7 @@ class Admin::EventsController < ApplicationController
   end
 
   def destroy
-    event = Event.find_by params[:id]
+    event = Event.find_by params[:event_id]
     event.destroy
     flash[:notice] = "Event deleted"
     redirect_to admin_events_path
