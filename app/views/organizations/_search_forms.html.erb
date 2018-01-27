@@ -1,0 +1,27 @@
+<h5>Search By Name</h5>
+<%= form_for :organization, method: :get, url: organizations_path do |f| %>
+  <div>
+    <%= f.label :search_name %>
+    <%= f.text_field :search_name%>
+  </div>
+  <%= f.submit 'Search'%>
+<% end %>
+
+<h5>Search By Tags</h5>
+<%= form_for :organization, method: :get, url: organizations_path do |f| %>
+  <div>
+    <%= f.label :tags %> <br />
+    <%= f.collection_select(
+     :tag_ids,
+     Tag.order(:name),
+     :id,
+     :name,
+     {},
+     {
+       multiple: true,
+       class: 'chosen-select'
+     }
+    ) %>
+  </div>
+  <%= f.submit 'Search'%>
+<% end %>

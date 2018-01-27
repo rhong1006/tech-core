@@ -1,6 +1,9 @@
+
 Event.destroy_all
 Organization.destroy_all
 User.destroy_all
+Tag.destroy_all
+Tagging.destroy_all
 
 PASSWORD = '123'
 
@@ -73,4 +76,19 @@ puts Cowsay.say("Created #{events.count} events", :moose)
   )
 end
 
+
 puts "Use #{super_user.email} and #{PASSWORD} for testing"
+
+tags = Tag.all
+# Seeding Taggings
+organizations.each do |organization|
+  rand(1..3).times.each do
+    Tagging.create(
+      organization_id: organizations.sample.id,
+      tag_id: tags.sample.id
+    )
+  end
+end
+
+taggings = Tagging.all
+puts "===================Create #{taggings.count} taggings====================="
