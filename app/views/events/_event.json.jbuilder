@@ -1,2 +1,4 @@
-json.extract! event, :id, :title, :description, :location, :start_time, :end_time, :created_at, :updated_at
-json.url event_url(event, format: :json)
+json.extract! event, :id, :title, :description
+json.start event.start_time
+json.end event.end_time
+json.url event_url(event, format: :html)
