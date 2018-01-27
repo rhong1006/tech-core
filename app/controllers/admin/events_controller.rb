@@ -1,5 +1,5 @@
 class Admin::EventsController < ApplicationController
-
+  before_action :is_admin!
 
   def index
     @events = Event.all

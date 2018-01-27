@@ -1,6 +1,7 @@
 class OrganizationsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_organization, only: [:show, :edit, :update, :destroy], :authorize_user!, only: [:edit, :update, :destroy]
+  before_action :set_organization, only: [:show, :edit, :update, :destroy]
+  before_action :authorize_user!, only: [:edit, :update, :destroy]
 
 
   # GET /organizations

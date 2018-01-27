@@ -1,5 +1,5 @@
 class Admin::UsersController < ApplicationController
-
+  before_action :is_admin!
 
   def index
     @user = User.new

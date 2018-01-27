@@ -1,5 +1,6 @@
 class Admin::OrganizationsController < ApplicationController
-
+  before_action :is_admin!
+  
   def index
     @organization = Organization.create
     @organizations = Organization.order(created_at: :desc)
@@ -7,7 +8,7 @@ class Admin::OrganizationsController < ApplicationController
 
   def create
     @organization = Organization.create organization_params
-    @organization.user_id = User.last.id
+    @organization.user_id = current_user.id
     @organization.save
     if @organization.save
       redirect_to admin_organizations_path

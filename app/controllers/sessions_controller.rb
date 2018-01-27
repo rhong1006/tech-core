@@ -4,7 +4,6 @@ class SessionsController < ApplicationController
   end
 
   def create
-    flash[:alert] = 'entrou aqui'
     user = User.find_by(email: session_params[:email])
 
     if user && user.authenticate(session_params[:password])
