@@ -44,6 +44,7 @@
   					<li><%= link_to 'News', '#' %></li>
 
             <% if user_signed_in? %>
+            <!-- TODO connect hrefs/links with their respective actions -->
   					<li class="has-dropdown"><a href="#blog"><%= current_user.first_name %></a>
   						<ul class="dropdown">
   							<li><%= link_to("My Events", '#') %></li>
