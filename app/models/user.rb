@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+
   # resolved conflict by adding dependent: :destroy
   has_many :organizations, dependent: :destroy
 
