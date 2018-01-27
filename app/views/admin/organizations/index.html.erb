@@ -6,15 +6,13 @@
       <th>Organization Name</th>
       <th>Published</th>
       <th>Action</th>
-      <th>Created At</th>
-      <th>Is Admin?</th>
     </tr>
 
     <% @organizations.each do |organization| %>
       <tr>
         <td><%= organization.name %></td>
         <td><%= organization.published %></td>
-
+        <td><%= link_to 'Show', organization %></td>
       </tr>
     <% end %>
   </tbody>
