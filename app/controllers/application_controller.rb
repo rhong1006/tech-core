@@ -14,6 +14,12 @@ class ApplicationController < ActionController::Base
   end
   helper_method :current_user
 
+  def is_admin!
+    unless current_user&.is_admin
+      redirect_to home_path
+    end
+  end
+
   private
   def authenticate_user!
     unless user_signed_in?
