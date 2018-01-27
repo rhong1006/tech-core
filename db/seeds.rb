@@ -57,6 +57,7 @@ organizations.each do |organization|
     Event.create(
       title: Faker::Book.title,
       description: Faker::Lorem.paragraph,
+      # TODO change into a location using Faker::Address
       location: Faker::FamilyGuy.character,
       start_time: s_t,
       end_time: e_t,
