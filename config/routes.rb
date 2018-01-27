@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get('/admin', to: 'admin#index')
 
   resources :organizations, only: [:new, :create, :show, :index] do
     resources :events, only: [:new, :create, :show], shallow: true
@@ -7,5 +8,11 @@ Rails.application.routes.draw do
   resources :users, only: [:new, :create, :destroy]
   resource :session, only: [:create, :destroy]
   resources :events, only:[:index]
+  namespace :admin, only: [:index] do
+    resources :events, only: [:index, :create, :destroy]
+    resources :organizations, only: [:index, :create, :destroy]
+    resources :users, only: [:index, :create, :destroy]
+  end
+
 
 end

@@ -33,6 +33,7 @@ gem 'bcrypt', '~> 3.1.7'
 
 gem 'bootstrap', '~> 4.0.0.beta2.1'
 gem 'jquery-rails'
+gem "animate-rails"
 gem 'chosen-rails'
 gem 'cancancan'
 gem 'faker', github: 'stympy/faker'
