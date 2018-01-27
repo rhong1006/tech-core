@@ -11,7 +11,7 @@
   <body>
     <header id="home">
   		<!-- Background Image -->
-  		<div class="bg-img" style="background-image: url('./assets/background2.jpg');">
+  		<div class="bg-img" style="background-image: url('/assets/background2.jpg');">
   			<div class="overlay"></div>
   		</div>
   		<!-- /Background Image -->
@@ -43,13 +43,14 @@
   					<li><li class="nav-item"><%= link_to 'Events', '#' %></li>
   					<li><%= link_to 'News', '#' %></li>
 
-            <% if true #user_signed_in? %>
+            <% if user_signed_in? %>
   					<li class="has-dropdown"><a href="#blog">User Name</a>
   						<ul class="dropdown">
   							<li><%= link_to("My Events", '#') %></li>
   							<% if true #current_user.is_admin? %>
                   <li><%= link_to("Dashboard", '#') %></li>
                 <% end %>
+                <span>Hello, <%= current_user.first_name %>!</span>
                 <li><%= link_to('Sign Out', session_path, method: :delete, data: {confirm: 'Do you really want to sign out?'}) %></li>
   						</ul>
   					</li>
@@ -57,7 +58,7 @@
               <li class="nav-item"></li>
               <li class="nav-item"></li>
               <li><%= link_to 'Sign Up', new_user_path %></li>
-              <li><%= link_to 'Login', session_path %></li>
+              <li><%= link_to 'Login', new_session_path %></li>
             <% end %>
   				</ul>
   				<!-- /Main navigation -->
