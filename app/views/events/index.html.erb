@@ -1,5 +1,22 @@
 <h1>Events</h1>
 
+<div id="calendar"></div>
+<script type="text/javascript">
+$('#calendar').fullCalendar({
+  events: '/events.json',
+  weekMode: 'liquid',
+  defaultView: 'agendaWeek',
+  header: {
+    left: 'today prev,next',
+    center: 'title',
+    right: 'agendaDay,agendaWeek,month',
+        },
+  // editable: true,
+  // selectable: true,
+  // selectHelper: true
+});
+</script>
+
 <table>
   <thead>
     <tr>
