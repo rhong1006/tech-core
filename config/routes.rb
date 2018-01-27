@@ -9,9 +9,9 @@ Rails.application.routes.draw do
   resource :session, only: [:create, :destroy]
   resources :events, only:[:index]
   namespace :admin, only: [:index] do
-    resources :events, only: [:index]
-    resources :organizations, only: [:index]
-    resources :users, only: [:index]
+    resources :events, only: [:index, :create, :destroy]
+    resources :organizations, only: [:index, :create, :destroy]
+    resources :users, only: [:index, :create, :destroy]
   end
 
 
