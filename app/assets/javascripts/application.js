@@ -14,4 +14,7 @@
 //= require popper
 //= require bootstrap
 //= require rails-ujs
+//= require moment
+//= require fullcalendar
+//= require fullcalendar/gcal
 //= require_tree .
