@@ -49,10 +49,8 @@ puts Cowsay.say("Created #{organizations.count} organizations", :ghostbusters)
 
 organizations.each do |organization|
   rand(1..3).times.each do
-    s_t = DateTime.now + rand(1...60).days
-    e_t = s_t + rand(1...5).hours
-    # s_t = rand(0..1000)
-    # e_t = s_t + 3
+    s_t = DateTime.new(2018,1,20,8) + rand(1...12).hours + rand(1...100).days
+    e_t = s_t + rand(1...4).hours
     Event.create(
       title: Faker::Book.title,
       description: Faker::Lorem.paragraph,
@@ -67,7 +65,7 @@ end
 
 events = Event.all
 
-puts Cowsay.say("Create #{events.count} events", :moose)
+puts Cowsay.say("Created #{events.count} events", :moose)
 
 ["Javascript", "Java", "Ruby", "Rails", "HTML", "CSS"].each do |t|
   Tag.create(
