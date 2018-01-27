@@ -1,0 +1,21 @@
+<h1>Organization</h1>
+
+<table>
+  <tbody>
+    <tr>
+      <th>Organization Name</th>
+      <th>Published</th>
+      <th>Action</th>
+      <th>Created At</th>
+      <th>Is Admin?</th>
+    </tr>
+
+    <% @organizations.each do |organization| %>
+      <tr>
+        <td><%= organization.name %></td>
+        <td><%= organization.published %></td>
+
+      </tr>
+    <% end %>
+  </tbody>
+</table>
