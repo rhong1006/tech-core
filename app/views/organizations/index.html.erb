@@ -1,70 +1,13 @@
-<p id="notice"><%= notice %></p>
-
-<%= form_for :organization, method: :get, url: organizations_path do |f| %>
-  <div>
-    <%= f.label :search_name %>
-    <%= f.text_field :search_name%>
-  </div>
-  <%= f.submit 'Search'%>
-<% end %>
-
-
-<%= form_for :organization, method: :get, url: organizations_path do |f| %>
-  <div>
-    <%= f.label :tags %> <br />
-    <%= f.collection_select(
-     :tag_ids,
-     Tag.order(:name),
-     :id,
-     :name,
-     {},
-     {
-       multiple: true,
-       class: 'chosen-select'
-     }
-    ) %>
-  </div>
-  <%= f.submit 'Search'%>
-<% end %>
-
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Address</th>
-      <th>Overview</th>
-      <th>Employees</th>
-      <th>Tech team size</th>
-      <th>Website</th>
-      <th>Twitter</th>
-      <th>Logo</th>
-      <th>Published</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% if @organizations %>
-      <% @organizations.each do |organization| %>
-        <tr>
-          <td><%= organization.name %></td>
-          <td><%= organization.address %></td>
-          <td><%= organization.overview %></td>
-          <td><%= organization.employees %></td>
-          <td><%= organization.tech_team_size %></td>
-          <td><%= organization.website %></td>
-          <td><%= organization.twitter %></td>
-          <td><%= organization.logo %></td>
-          <td><%= organization.published %></td>
-          <td><%= link_to 'Show', organization %></td>
-          <td><%#= link_to 'Edit', edit_organization_path(organization) %></td>
-          <td><%= link_to 'Destroy', organization, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        </tr>
-      <% end %>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Organization', new_organization_path %>
+<div class="row justify-content-center">
+  <% @organizations.each do |organization| %>
+    <div class="col-8 col-sm-6 col-md-4 col-lg-3">
+      <div class="card sm-6 mb-4 lg-3 box-shadow about">
+        <%= image_tag(organization.logo, class:"img-responsive center-block") %>
+        <div class="card-body">
+          <p class="card-title"><%= link_to organization.name %></p>
+          <p class="card-text"><%= organization.tech_team_size %> employees</p>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
