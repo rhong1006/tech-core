@@ -1,3 +1,9 @@
+<% if @organization.logo.present? %>
+  <%= image_tag(@organization.logo, class:"img-responsive center-block") %>
+<% else %>
+  <%= image_tag('placeholder.png', class:"img-responsive center-block") %>
+<% end %>
+
 <p>
   <strong>Name:</strong>
   <%= @organization.name %>
@@ -31,11 +37,6 @@
 <p>
   <strong>Twitter:</strong>
   <%= @organization.twitter %>
-</p>
-
-<p>
-  <strong>Logo:</strong>
-  <%= @organization.logo %>
 </p>
 
 <p>
