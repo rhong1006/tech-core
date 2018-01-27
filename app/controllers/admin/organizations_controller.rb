@@ -1,13 +1,16 @@
 class Admin::OrganizationsController < ApplicationController
 
-
   def index
-    @organizations = Organization.all
+    @organization = Organization.create
+    @organizations = Organization.order(created_at: :desc)
   end
 
   def create
-    @organization = Organization.new organization_params
+    @organization = Organization.create organization_params
+    @organization.user_id = 325
+    @organization.save
     if @organization.save
+      redirect_to admin_organizations_path
       flash[:notice] = "Organization saved"
     else
       flash[:alert] = "Organization coult not be created"
@@ -15,7 +18,7 @@ class Admin::OrganizationsController < ApplicationController
   end
 
   def destroy
-    organization = Organization.find_by params[:id]
+    organization = Organization.find_by params[:organization_id]
     organization.destroy
     flash[:notice] = "Organization deleted"
     redirect_to admin_organizations_path
@@ -23,8 +26,9 @@ class Admin::OrganizationsController < ApplicationController
 
   private
   def organization_params
-    params.require(:organization).permit(:title, :description, :location, :start_time,
-                                  :end_time, :organization_id, :published)
+    params.require(:organization).permit(:name, :address, :overview, :employees,
+                                  :tech_team_size, :website, :twitter, :logo,
+                                  :published, :user_id, :user)
   end
 
 end
