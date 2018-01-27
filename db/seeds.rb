@@ -1,6 +1,8 @@
 Event.destroy_all
 Organization.destroy_all
 User.destroy_all
+Tag.destroy_all
+Tagging.destroy_all
 
 PASSWORD = '123'
 
