@@ -44,13 +44,12 @@
   					<li><%= link_to 'News', '#' %></li>
 
             <% if user_signed_in? %>
-  					<li class="has-dropdown"><a href="#blog">User Name</a>
+  					<li class="has-dropdown"><a href="#blog"><%= current_user.first_name %></a>
   						<ul class="dropdown">
   							<li><%= link_to("My Events", '#') %></li>
-  							<% if true #current_user.is_admin? %>
+  							<% if current_user.is_admin? %>
                   <li><%= link_to("Dashboard", '#') %></li>
                 <% end %>
-                <span>Hello, <%= current_user.first_name %>!</span>
                 <li><%= link_to('Sign Out', session_path, method: :delete, data: {confirm: 'Do you really want to sign out?'}) %></li>
   						</ul>
   					</li>
