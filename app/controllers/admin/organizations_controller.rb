@@ -22,7 +22,7 @@ class Admin::OrganizationsController < ApplicationController
 
   private
   def organization_params
-    params.require(:organization).permit(:title, :description, :location, :start_time
+    params.require(:organization).permit(:title, :description, :location, :start_time,
                                   :end_time, :organization_id, :published)
   end
 
