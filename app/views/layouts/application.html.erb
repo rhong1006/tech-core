@@ -44,13 +44,13 @@
   					<li><%= link_to 'News', '#' %></li>
 
             <% if user_signed_in? %>
+            <!-- TODO connect hrefs/links with their respective actions -->
   					<li class="has-dropdown"><a href="#blog"><%= current_user.first_name %></a>
   						<ul class="dropdown">
   							<li><%= link_to("My Events", '#') %></li>
   							<% if current_user.is_admin? %>
                   <li><%= link_to("Dashboard", '#') %></li>
                 <% end %>
-                <span>Hello, <%= current_user.first_name %>!</span>
                 <li><%= link_to('Sign Out', session_path, method: :delete, data: {confirm: 'Do you really want to sign out?'}) %></li>
   						</ul>
   					</li>
@@ -75,6 +75,7 @@
   					<!-- home content -->
   					<div class="col-md-10 col-md-offset-1">
   						<div class="home-content">
+                <!-- TODO Change the h1 and p text to something more meaningful -->
   							<h1 class="white-text">We Are the Team 2</h1>
   							<p class="white-text">Morbi mattis felis at nunc. Duis viverra diam non justo. In nisl.
   							</p>
