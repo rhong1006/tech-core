@@ -8,6 +8,9 @@ class Organization < ApplicationRecord
   mount_uploader :logo, LogoUploader
   validates :logo, presence: true
 
+  geocoded_by :address
+  after_validation :geocode
+  
   scope :search_by_name, -> (name) {
     where("name ILIKE  '%#{name}%'")
   }
