@@ -1,3 +1,4 @@
+
 Event.destroy_all
 Organization.destroy_all
 User.destroy_all
@@ -6,7 +7,6 @@ Tagging.destroy_all
 
 PASSWORD = '123'
 
-# Seeding Super_User
 super_user = User.create(
   first_name: 'a',
   last_name: 'a',
@@ -15,7 +15,6 @@ super_user = User.create(
   is_admin: true
 )
 
-# Seeding User
 80.times.each do
   first_name = Faker::Name.first_name
   last_name = Faker::Name.last_name
@@ -32,7 +31,7 @@ users = User.all
 
 puts Cowsay.say("Create #{users.count} users", :tux)
 
-# Seeding Organization
+
 users.each do |user|
   Organization.create(
     name: Faker::FamilyGuy.character,
@@ -51,36 +50,33 @@ end
 organizations = Organization.all
 puts Cowsay.say("Created #{organizations.count} organizations", :ghostbusters)
 
-
-# Seeding Events
 organizations.each do |organization|
   rand(1..3).times.each do
-    s_t = rand(0..1000)
-    e_t = s_t + 3
+    s_t = DateTime.new(2018,1,20,8) + rand(1...12).hours + rand(1...100).days
+    e_t = s_t + rand(1...4).hours
     Event.create(
       title: Faker::Book.title,
       description: Faker::Lorem.paragraph,
       location: Faker::FamilyGuy.character,
-      start_time: s_t.hours.from_now.to_time,
-      end_time: e_t.hours.from_now.to_time,
+      start_time: s_t,
+      end_time: e_t,
+      organization_id: organization.id
     )
   end
 end
 
 
 events = Event.all
-puts Cowsay.say("Create #{events.count} events", :moose)
 
+puts Cowsay.say("Created #{events.count} events", :moose)
 
-# Seeding Tags
 ["Javascript", "Java", "Ruby", "Rails", "HTML", "CSS"].each do |t|
   Tag.create(
     name: t
   )
 end
 
-tags = Tag.all
-puts "===================Create #{tags.count} tags====================="
+puts "Use #{super_user.email} and #{PASSWORD} for testing"
 
 
 # Seeding Taggings
@@ -95,5 +91,3 @@ end
 
 taggings = Tagging.all
 puts "===================Create #{taggings.count} taggings====================="
-
-puts ">>>>>>>>>>>>>>>>>Use #{super_user.email} and #{PASSWORD} for testing<<<<<<<<<<<<<<<<<<<"
