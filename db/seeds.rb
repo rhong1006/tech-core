@@ -55,8 +55,9 @@ organizations.each do |organization|
       title: Faker::Book.title,
       description: Faker::Lorem.paragraph,
       location: Faker::FamilyGuy.character,
-      start_time: s_t.hours.from_now.to_time,
-      end_time: e_t.hours.from_now.to_time,
+      start_time: DateTime.now + s_t.hours,
+      end_time: DateTime.now + e_t.hours,
+      organization_id: organization.id
     )
   end
 end
@@ -64,7 +65,7 @@ end
 
 events = Event.all
 
-puts Cowsay.say("Create #{events.count} events", :moose)
+puts Cowsay.say("Created #{events.count} events", :moose)
 
 ["Javascript", "Java", "Ruby", "Rails", "HTML", "CSS"].each do |t|
   Tag.create(
