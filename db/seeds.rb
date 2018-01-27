@@ -49,8 +49,8 @@ puts Cowsay.say("Created #{organizations.count} organizations", :ghostbusters)
 
 organizations.each do |organization|
   rand(1..3).times.each do
-    s_t = DateTime.now
-    e_t = DateTime.now + 1.hour
+    s_t = DateTime.now + rand(1...60).days
+    e_t = s_t + rand(1...5).hours
     # s_t = rand(0..1000)
     # e_t = s_t + 3
     Event.create(
