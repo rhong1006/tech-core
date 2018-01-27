@@ -3,7 +3,6 @@ class OrganizationsController < ApplicationController
   before_action :set_organization, only: [:show, :edit, :update, :destroy]
   before_action :authorize_user!, only: [:edit, :update, :destroy]
 
-
   # GET /organizations
   # GET /organizations.json
   def index
@@ -92,7 +91,7 @@ class OrganizationsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def organization_params
-      params.require(:organization).permit(:search_name, :name, :address, :overview, :employees, :tech_team_size, :website, :twitter, :logo, :published)
+      params.require(:organization).permit(:search_name, :name, :address, :latitude, :longitude, :overview, :employees, :tech_team_size, :website, :twitter, :logo, :published)
     end
 
     def authorize_user!

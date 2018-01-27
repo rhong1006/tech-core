@@ -6,8 +6,14 @@ class Organization < ApplicationRecord
   has_many :events, dependent: :destroy
 
   mount_uploader :logo, LogoUploader
+
+  # NOTE remove validations from seed file because the seed generates random text, not images
   # validates :logo, presence: true
 
+
+  geocoded_by :address
+  after_validation :geocode
+  
   scope :search_by_name, -> (name) {
     where("name ILIKE  '%#{name}%'")
   }
