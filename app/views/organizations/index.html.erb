@@ -1,19 +1,13 @@
-<div class="row">
+<div class="row justify-content-center">
   <% @organizations.each do |organization| %>
-    <div class="col-md-4">
-      <div class="card mb-4 box-shadow">
-        <%= image_tag organization.logo %>
+    <div class="col-8 col-sm-6 col-md-4 col-lg-3">
+      <div class="card sm-6 mb-4 lg-3 box-shadow about">
+        <%= image_tag(organization.logo, class:"img-responsive center-block") %>
         <div class="card-body">
-          <p class="card-title"><%= link_to 'Show', organization.name %></p>
+          <p class="card-title"><%= link_to organization.name %></p>
           <p class="card-text"><%= organization.tech_team_size %> employees</p>
-          <p class="card-text"><%= link_to 'Edit', edit_organization_path(organization) %></p>
-          <p class="card-text"><%= link_to 'Destroy', organization, method: :delete, data: { confirm: 'Are you sure?' } %></p>
         </div>
       </div>
     </div>
   <% end %>
 </div>
-
-<br>
-
-<%= link_to 'New Organization', new_organization_path %>
