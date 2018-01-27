@@ -11,22 +11,10 @@
 // about supported directives.
 //
 //= require jquery3
+//= require popper
+//= require bootstrap
+//= require rails-ujs
+//= require_tree .
 //= require moment
 //= require fullcalendar
 //= require fullcalendar/gcal
-//= require rails-ujs
-//= require_tree .
-
-$('#calendar').fullCalendar({
-  events: '/events.json',
-  weekMode: 'liquid',
-  defaultView: 'agendaWeek',
-  header: {
-    left: 'today prev,next',
-    center: 'title',
-    right: 'agendaDay,agendaWeek,month',
-        },
-  // editable: true,
-  // selectable: true,
-  // selectHelper: true
-});
