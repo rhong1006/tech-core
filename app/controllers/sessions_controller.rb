@@ -4,9 +4,6 @@ class SessionsController < ApplicationController
   end
 
   def create
-    # TODO change alert message and Don't show it by default.
-    # The current actions shows this message when the user signs in. 
-    flash[:alert] = 'entrou aqui'
     user = User.find_by(email: session_params[:email])
 
     if user && user.authenticate(session_params[:password])
