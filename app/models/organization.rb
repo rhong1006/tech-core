@@ -5,7 +5,8 @@ class Organization < ApplicationRecord
 
   has_many :events, dependent: :destroy
 
-  has_many :events, dependent: :destroy
+  mount_uploader :logo, LogoUploader
+  validates :logo, presence: true
 
   scope :search_by_name, -> (name) {
     where("name ILIKE  '%#{name}%'")
