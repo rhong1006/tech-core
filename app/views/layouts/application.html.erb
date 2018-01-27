@@ -23,7 +23,7 @@
   				<div class="navbar-header">
   					<!-- Logo -->
   					<div class="navbar-brand">
-  						<a href="index.html">
+  						<a href="/organizations/">
   							<%= image_tag 'logo.png', class: 'logo' %>
   							<%= image_tag 'logo-alt.png', class: 'logo-alt' %>
   						</a>
@@ -39,8 +39,8 @@
 
   				<!--  Main navigation  -->
   				<ul class="main-nav nav navbar-nav navbar-right">
-  					<li><%= link_to 'Directory', '#' %></li>
-  					<li><li class="nav-item"><%= link_to 'Events', '#' %></li>
+  					<li><%= link_to 'Organizations', organizations_path %></li>
+  					<li><li class="nav-item"><%= link_to 'Events', events_path %></li>
   					<li><%= link_to 'News', '#' %></li>
 
             <% if user_signed_in? %>
@@ -88,34 +88,32 @@
   		<!-- /home wrapper -->
 
   	</header>
-    <div class="container" id="map">
-      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2602.706205702692!2d-123.11084908463799!3d49.28196397874309!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x5486717984d4ef63%3A0x695af2b5a31aca7b!2s142+W+Hastings+St%2C+Vancouver%2C+BC+V6B!5e0!3m2!1sen!2sca!4v1517023185784" width="100%" height="300" frameborder="0" style="border:0" allowfullscreen></iframe>
-    </div>
+
     <main role="main">
 
-      <div class="album py-5 bg-light">
         <div class="container">
-          <% if flash[:alert].present? %>
-            <div class="alert alert-warning alert-dismissible fade show" role="alert">
-              <%= flash[:alert] %>
+          <div id="messages">
+            <% if flash[:alert].present? %>
+              <div id="alert" class="alert alert-warning" role="alert">
+                <%= flash[:alert] %>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+            <% end %>
+
+            <% if flash[:notice].present? %>
+            <div id="notice" class="alert alert-info" role="notice">
+              <%= flash[:notice] %>
               <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
-          <% end %>
-
-          <% if flash[:notice].present? %>
-          <div id="notice" class="alert alert-info alert-dismissible fade show" role="alert">
-            <%= flash[:notice] %>
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
+            <% end %>
           </div>
-          <% end %>
 
           <%= yield %>
         </div>
-      </div>
 
     </main>
 
