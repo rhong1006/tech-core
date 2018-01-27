@@ -7,7 +7,7 @@ class Admin::OrganizationsController < ApplicationController
 
   def create
     @organization = Organization.create organization_params
-    @organization.user_id = 325
+    @organization.user_id = User.last.id
     @organization.save
     if @organization.save
       redirect_to admin_organizations_path
@@ -18,7 +18,7 @@ class Admin::OrganizationsController < ApplicationController
   end
 
   def destroy
-    organization = Organization.find_by params[:organization_id]
+    organization = Organization.find params[:id]
     organization.destroy
     flash[:notice] = "Organization deleted"
     redirect_to admin_organizations_path
