@@ -1,10 +1,30 @@
 class OrganizationsController < ApplicationController
-  before_action :set_organization, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!
+  before_action :set_organization, only: [:show, :edit, :update, :destroy], :authorize_user!, only: [:destroy]
 
   # GET /organizations
   # GET /organizations.json
   def index
-    @organizations = Organization.all
+    organization_keyword = params[:organization]
+    # puts "===============organization_keyword ===================="
+    # puts organization_keyword
+
+
+    if organization_keyword
+      keyword_type = organization_keyword.keys.first
+      keyword = organization_keyword[keyword_type]
+      puts "===============keyword.length===================="
+      puts keyword
+      # puts "===============keyword_type matches ?===================="
+      # puts organization_keyword.keys == ["search_name"]
+      if keyword_type  == "search_name"
+        @organizations = Organization.search_by_name(keyword)
+      elsif keyword_type == "tag_ids"
+        @organizations = Organization.search_by_tag(keyword.map{|kw| kw if kw.present?}) #passing an array of tag_ids to function
+      end
+    else
+        @organizations = Organization.all
+    end
   end
 
   # GET /organizations/1
@@ -25,6 +45,7 @@ class OrganizationsController < ApplicationController
   # POST /organizations.json
   def create
     @organization = Organization.new(organization_params)
+    @organization.user = current_user
 
     respond_to do |format|
       if @organization.save
@@ -69,6 +90,13 @@ class OrganizationsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def organization_params
-      params.require(:organization).permit(:name, :address, :overview, :employees, :tech_team_size, :website, :twitter, :logo, :published)
+      params.require(:organization).permit(:search_name, :name, :address, :overview, :employees, :tech_team_size, :website, :twitter, :logo, :published)
+    end
+
+    def authorize_user!
+      unless can?(:manage, @organization)
+        flash[:alert] = "Access Denied!"
+        redirect_to home_path
+      end
     end
 end
