@@ -27,7 +27,7 @@
   				<div class="navbar-header">
   					<!-- Logo -->
   					<div class="navbar-brand">
-  						<a href="/organizations/">
+  						<a href="<%= home_path %>">
   							<%= image_tag 'logo.png', class: 'logo' %>
   							<%= image_tag 'logo-alt.png', class: 'logo-alt' %>
   						</a>
@@ -45,15 +45,16 @@
   				<ul class="main-nav nav navbar-nav navbar-right">
   					<li><%= link_to 'Organizations', organizations_path %></li>
   					<li><li class="nav-item"><%= link_to 'Events', events_path %></li>
-  					<li><%= link_to 'News', '#' %></li>
+  					<li><%= link_to 'News', news_index_path %></li>
 
             <% if user_signed_in? %>
             <!-- TODO connect hrefs/links with their respective actions -->
   					<li class="has-dropdown"><a href="#blog"><%= current_user.first_name %></a>
   						<ul class="dropdown">
-  							<li><%= link_to("My Events", '#') %></li>
   							<% if current_user.is_admin? %>
-                  <li><%= link_to("Dashboard", '#') %></li>
+                  <li><%= link_to("Organizations admin", admin_organizations_path) %></li>
+                  <li><%= link_to("Events admin", admin_events_path) %></li>
+                  <li><%= link_to("Users admin", admin_users_path) %></li>
                 <% end %>
                 <li><%= link_to('Sign Out', session_path, method: :delete, data: {confirm: 'Do you really want to sign out?'}) %></li>
   						</ul>

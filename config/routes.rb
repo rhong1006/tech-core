@@ -17,7 +17,7 @@ Rails.application.routes.draw do
     resources :users, only: [:index, :create, :destroy]
   end
 
-  get('/', { to: 'events#index', as: :home })
+  get('/', { to: 'organizations#index', as: :home })
 
 
 end
