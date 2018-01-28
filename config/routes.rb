@@ -15,6 +15,4 @@ Rails.application.routes.draw do
   end
 
   get('/', { to: 'events#index', as: :home })
-
-
 end
