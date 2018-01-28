@@ -11,7 +11,6 @@ class Organization < ApplicationRecord
   validates :employees, presence: true
   validates :tech_team_size, presence: true
   validates :website, presence: true
-  validates :logo, presence: true
 
   mount_uploader :logo, LogoUploader
 

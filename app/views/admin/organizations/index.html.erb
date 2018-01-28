@@ -16,14 +16,14 @@
     <tr>
       <th>Organization Name</th>
       <th>Published</th>
-      <th>Action</th>
+      <th style="padding-left:10px">Action</th>
     </tr>
 
     <% @organizations.each do |organization| %>
       <tr>
         <td><%= organization.name %></td>
         <td><%= organization.published %></td>
-        <td><%= link_to 'Show', organization %>
+        <td style="padding-left:10px"><%= link_to 'Show', organization %>
           <%= link_to 'Delete', admin_organization_path(organization), method: :delete,
                                     data: {confirm: 'Are you sure?'} %>
         </td>

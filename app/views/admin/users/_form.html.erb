@@ -10,7 +10,10 @@
     <%= form.email_field :email, class: "form-control", placeholder: "Email", autocomplete: "off" %>
   </fieldset>
   <fieldset>
-    <%= form.password_field :password, class: "form-control", placeholder: "Password", autocomplete: "off" %>
+    <%= form.password_field :password, class: "form-control", placeholder: "Password" %>
+  </fieldset>
+  <fieldset>
+    <%= form.password_field :password_confirmation, class: "form-control", placeholder: "Password confirmation" %>
   </fieldset>
   <fieldset>
     <%= form.check_box :is_admin, class: "", placeholder: "Is Admin?" %>

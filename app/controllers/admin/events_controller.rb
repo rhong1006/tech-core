@@ -8,12 +8,14 @@ class Admin::EventsController < ApplicationController
 
   def create
     @event = Event.create event_params
+    @event.organization = current_user.organizations.first
     @event.save
     if @event.save
       redirect_to admin_events_path
       flash[:notice] = "Event saved"
     else
-      flash[:alert] = "Event coult not be created"
+      redirect_to admin_events_path
+      flash[:alert] = "Event could not be created"
     end
   end
 

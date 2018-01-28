@@ -1,6 +1,6 @@
 class Admin::UsersController < ApplicationController
   before_action :is_admin!
-  before_action :set_user, except: :index
+  before_action :set_user, only: [:update]
 
   def index
     @user = User.new
@@ -13,6 +13,7 @@ class Admin::UsersController < ApplicationController
       redirect_to admin_users_path
       flash[:notice] = "User created"
     else
+      redirect_to admin_users_path
       flash[:alert] = "User could not be created"
     end
   end
