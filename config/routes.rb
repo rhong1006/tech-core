@@ -1,6 +1,4 @@
 Rails.application.routes.draw do
-  get('/admin', to: 'admin#index')
-  # get('/events/new', to: 'events#new')
 
   resources :news, only: [:index]
   resources :events, only:[:index]
@@ -20,6 +18,7 @@ Rails.application.routes.draw do
     resources :users, only: [:index, :create, :destroy]
   end
 
+  resources :welcome, only: [:about]
   get('/', { to: 'organizations#index', as: :home })
-
+  get('/about', { to: 'welcome#about', as: :about })
 end
