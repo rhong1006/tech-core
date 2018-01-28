@@ -55,6 +55,7 @@ gem 'jwt'
 gem 'fullcalendar-rails'
 gem 'momentjs-rails'
 gem 'seed_dump'
+gem 'will_paginate', '~> 3.1.0'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

@@ -4,6 +4,14 @@ class OrganizationsController < ApplicationController
   before_action :authorize_user!, only: [:edit, :update, :destroy]
 
   def index
+    # Pagination
+    @itensPerPage = 12
+    @actualPage = 1
+    if params[:page].to_i > 1
+      @actualPage = params[:page]
+    end
+    @totalItens = Organization.all.count
+
     # Get params matching :organization
     organization_keyword = params[:organization]
     if organization_keyword
@@ -11,14 +19,17 @@ class OrganizationsController < ApplicationController
       keyword_type = organization_keyword.keys.first
       keyword = organization_keyword[keyword_type]
       if keyword_type  == "search_name"
-        @organizations = Organization.search_by_name(keyword).order(name: :asc)
+        @organizations = Organization.search_by_name(keyword).order(name: :asc).page(params[:page]).per_page(@itensPerPage)
+        @totalItens = Organization.search_by_name(keyword).count
       elsif keyword_type == "tag_ids"
         @organizations = Organization.search_by_tag(keyword.map{|kw| kw if kw.present?})
       elsif keyword_type == "tech_size"
-        @organizations = Organization.search_by_tech_size(keyword.to_i).order(name: :asc)
+        @organizations = Organization.search_by_tech_size(keyword.to_i).order(name: :asc).page(params[:page]).per_page(@itensPerPage)
+        @totalItens = Organization.search_by_tech_size(keyword.to_i).count
       end
     else
-        @organizations = Organization.all.order(name: :asc);
+        @organizations = Organization.all.order(name: :asc).page(params[:page]).per_page(@itensPerPage)
+        @totalItens = Organization.all.count;
     end
 
     # Send localizations for index page

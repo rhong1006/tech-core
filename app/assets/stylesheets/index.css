@@ -7,6 +7,10 @@ main {
   margin-bottom: 30px;
 }
 
+.pager{
+  margin: 30px;
+}
+
 fieldset, .field {
   margin: 8px !important;
 }

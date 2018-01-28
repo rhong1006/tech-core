@@ -5,7 +5,14 @@ class EventsController < ApplicationController
 
   # GET /events
   def index
-    @events = Event.all.order(start_time: :asc)
+    @itensPerPage = 12
+    @actualPage = 1
+    if params[:page].to_i > 1
+      @actualPage = params[:page]
+    end
+    @events = Event.paginate(:page => @actualPage, :per_page => @itensPerPage)
+    # @events = Event.all
+    @totalItens = Event.all.count
   end
 
   # GET /events/1
@@ -78,3 +85,4 @@ class EventsController < ApplicationController
       redirect_to home_path
     end
   end
+end
