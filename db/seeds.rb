@@ -37,15 +37,15 @@ puts Cowsay.say("Create #{users.count} users", :tux)
 
 users.each do |user|
   Organization.create(
-    name: Faker::FamilyGuy.character,
+    name: Faker::Company.name,
     address: "Vancouver, BC #{postal_codes_van[rand(0..354)]}, Canada",
     latitude: 49.2780017  + (rand(1000) / 10000.0),
     longitude: -123.1203521 + (rand(1000) / 10000.0),
-    overview: Faker::FamilyGuy.character,
+    overview: rand(5..20).times.each do Faker::Company.catch_phrase end,
     employees: rand(50..100),
     tech_team_size: rand(10..25),
-    website: Faker::Book.title,
-    twitter: Faker::Code.asin,
+    website: Faker::Internet.url,
+    twitter: Faker::Internet.url,
     logo: Rails.root.join("public/logos", images.sample).open,
     published: true,
     user_id: user.id
@@ -63,7 +63,7 @@ organizations.each do |organization|
       title: Faker::Book.title,
       description: Faker::Lorem.paragraph,
       # TODO change into a location using Faker::Address
-      location: Faker::FamilyGuy.character,
+      location: Faker::Address.street_address,
       start_time: s_t,
       end_time: e_t,
       organization_id: organization.id

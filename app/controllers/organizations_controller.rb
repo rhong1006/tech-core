@@ -88,9 +88,8 @@ class OrganizationsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_organization
-      if @organization
-        @organization = Organization.find(params[:id])
-      else
+      @organization = Organization.find(params[:id])
+      if !@organization
         redirect_to home_path
       end 
     end
