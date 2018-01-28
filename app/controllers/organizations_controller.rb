@@ -47,7 +47,7 @@ class OrganizationsController < ApplicationController
   # GET /organizations/new
   def new
     if current_user.organizations.first.present?
-      redirect_to home_path
+      redirect_to home_path, alert: "You already have an organization."
     else
       @organization = Organization.new
     end
