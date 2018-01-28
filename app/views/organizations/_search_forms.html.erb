@@ -26,3 +26,12 @@
   </div>
   <%= f.submit 'Search'%>
 <% end %>
+
+<h5>Search By Tech Team Size</h5>
+<%= form_for :organization, method: :get, url: organizations_path do |f| %>
+  <div>
+    <%= f.label :tech_size %>
+    <%= f.text_field :tech_size %>
+  </div>
+  <%= f.submit 'Search'%>
+<% end %>

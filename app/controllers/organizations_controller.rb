@@ -14,6 +14,8 @@ class OrganizationsController < ApplicationController
         @organizations = Organization.search_by_name(keyword)
       elsif keyword_type == "tag_ids"
         @organizations = Organization.search_by_tag(keyword.map{|kw| kw if kw.present?})
+      elsif keyword_type == "tech_size"
+        @organizations = Organization.search_by_tech_size(keyword.to_i)
       end
     else
         @organizations = Organization.all
