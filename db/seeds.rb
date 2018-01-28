@@ -38,7 +38,7 @@ users.each do |user|
     address: Faker::Address.street_address,
     overview: Faker::FamilyGuy.character,
     employees: rand(50..100),
-    tech_team_size: rand(3..10),
+    tech_team_size: rand(10..25),
     website: Faker::Book.title,
     twitter: Faker::Code.asin,
     logo: Faker::Company.logo,

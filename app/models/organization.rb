@@ -13,4 +13,7 @@ class Organization < ApplicationRecord
     joins(:taggings).where("taggings.tag_id IN (:tags)", tags: tag_array)
   }
 
+  scope :search_by_tech_size, -> (team_size) {
+    where("tech_team_size <= #{team_size}+5 AND tech_team_size >= #{team_size}-5")
+  }
 end
