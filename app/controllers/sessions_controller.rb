@@ -9,7 +9,11 @@ class SessionsController < ApplicationController
     if user && user.authenticate(session_params[:password])
       session[:user_id] = user.id
       flash[:notice] = 'Thank you for sign in!'
-      redirect_to home_path
+      if current_user.is_admin?
+        redirect_to admin_organizations_path
+      else
+        redirect_to organizations_path
+      end
     else
       flash.now[:alert] = 'Wrong email or password!'
       render :new
