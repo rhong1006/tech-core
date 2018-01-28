@@ -1,0 +1,12 @@
+<div class="row justify-content-center">
+  <%= form_for :news, method: :get, url: news_index_path do |f| %>
+  <fieldset class="row">
+    <div class="col-xs-8">
+      <%= f.text_field :search_article, class: "form-control", placeholder: "Search Article" %>
+    </div>
+    <div class="col-xs-4">
+      <%= f.submit 'Search Article', class: "btn btn-primary" %>
+    </div>
+  </fieldset>
+  <% end %>
+</div>

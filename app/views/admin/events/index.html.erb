@@ -1,25 +1,36 @@
-<%= render 'form', event: @event %>
-<h1>Events</h1>
+<div class="row justify-content-center">
+  <div class="section-header text-center">
+    <h2 class="title">Events</h2>
+  </div>
 
-<table>
-  <tbody>
-    <tr>
-      <th>Event Title</th>
-      <th>Description</th>
-      <th>Location</th>
-      <th>Created At</th>
-    </tr>
+  <%= render 'form', event: @event %>
 
-    <% @events.each do |event| %>
+  <hr>
+
+  <div class="section-header text-center">
+    <h2 class="title">Events List</h2>
+  </div>
+
+  <table class="table table-striped">
+    <thead>
       <tr>
-        <td><%= event.title %></td>
-        <td><%= event.description %></td>
-        <td><%= event.location %></td>
-        <td><%= event.created_at %></td>
-        <td><%= link_to 'Delete', admin_event_path(event), method: :delete,
-                                  data: {confirm: 'Are you sure?'} %></td>
-
+        <th scope="col">Event Title</th>
+        <th scope="col">Description</th>
+        <th scope="col">Location</th>
+        <th scope="col" nowrap>Created At</th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
+    <tbody>
+      <% @events.each do |event| %>
+        <tr>
+          <td><%= link_to event.title, event_path(event), method: :show %></td>
+          <td><%= event.description %></td>
+          <td><%= event.location %></td>
+          <td><%= event.created_at %></td>
+          <td><%= link_to 'Delete', admin_event_path(event), method: :delete,
+                                    data: {confirm: 'Are you sure?'} %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

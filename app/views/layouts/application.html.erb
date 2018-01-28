@@ -27,9 +27,9 @@
   				<div class="navbar-header">
   					<!-- Logo -->
   					<div class="navbar-brand">
-  						<a href="/organizations/">
-  							<%= image_tag 'logo.png', class: 'logo' %>
-  							<%= image_tag 'logo-alt.png', class: 'logo-alt' %>
+  						<a href="<%= home_path %>">
+  							<%= image_tag 'techcore-logo.png', class: 'logo' %>
+  							<%= image_tag 'techcore-logo-alt.png', class: 'logo-alt' %>
   						</a>
   					</div>
   					<!-- /Logo -->
@@ -45,16 +45,32 @@
   				<ul class="main-nav nav navbar-nav navbar-right">
   					<li><%= link_to 'Organizations', organizations_path %></li>
   					<li><li class="nav-item"><%= link_to 'Events', events_path %></li>
-  					<li><%= link_to 'News', '#' %></li>
+  					<li><%= link_to 'News', news_index_path %></li>
 
             <% if user_signed_in? %>
             <!-- TODO connect hrefs/links with their respective actions -->
   					<li class="has-dropdown"><a href="#blog"><%= current_user.first_name %></a>
+              <li><%= link_to 'Create Event', new_organization_event_path(current_user) %></li>
   						<ul class="dropdown">
-  							<li><%= link_to("My Events", '#') %></li>
   							<% if current_user.is_admin? %>
-                  <li><%= link_to("Dashboard", '#') %></li>
+                  <li><%= link_to("Organizations admin", admin_organizations_path) %></li>
+                  <li><%= link_to("Events admin", admin_events_path) %></li>
+                  <li><%= link_to("Users admin", admin_users_path) %></li>
                 <% end %>
+
+                <% if current_user&.organizations.present? && !current_user.is_admin? %>
+                  <li><%= link_to("Organization", organization_path(current_user.organizations.first)) %></li>
+                <% elsif current_user && !current_user.is_admin? %>
+                  <li><%= link_to("Create Organization", new_organization_path) %></li>
+                <% end %>
+
+                <!-- TODO update link to edit Event after Rina fixes associations -->
+                <% if current_user && !current_user.is_admin? %>
+                  <li><%= link_to("Events", events_path) %></li>
+                <% elsif current_user && !current_user.is_admin? %>
+                  <li><%= link_to("Create Event", events_new_path) %></li>
+                <% end %>
+
                 <li><%= link_to('Sign Out', session_path, method: :delete, data: {confirm: 'Do you really want to sign out?'}) %></li>
   						</ul>
   					</li>
@@ -80,8 +96,8 @@
   					<div class="col-md-10 col-md-offset-1">
   						<div class="home-content">
                 <!-- TODO Change the h1 and p text to something more meaningful -->
-  							<h1 class="white-text">We Are the Team 2</h1>
-  							<p class="white-text">Morbi mattis felis at nunc. Duis viverra diam non justo. In nisl.
+  							<h1 class="white-text noselect">Growing the tech community</h1>
+  							<p class="white-text noselect">Find&nbsp; &#8226; &nbsp;Learn&nbsp; &#8226; &nbsp;Connect&nbsp; &#8226; &nbsp;Share
   							</p>
   						</div>
   					</div>
@@ -122,10 +138,34 @@
 
     </main>
 
+    <!-- Jack added this to provide a small bottom padding after yield -->
+    <div>&nbsp;</div>
+
     <footer id="footer" class="sm-padding bg-dark">
 
   		<!-- Container -->
   		<div class="container">
+
+        <!-- Row -->
+        <div class="row">
+          <div class="col-xs-4 footer-links">
+            <!-- footer copyright -->
+            <p>
+              <%=link_to 'Sign In', new_session_path %><br />
+              <%=link_to 'Sign Up', new_user_path %><br />
+              <%=link_to 'About', about_path %><br />
+            </p>
+            <!-- /footer copyright -->
+          </div>
+          <div class="col-xs-8 footer-copyright">
+            <!-- footer copyright -->
+            <p>
+              Built and maintained by students from <a href="https://www.codecore.ca">CodeCore</a>.<br />
+              Copyright © 2017. All Rights Reserved. Designed by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+            </p>
+            <!-- /footer copyright -->
+          </div>
+        </div>
 
   			<!-- Row -->
   			<div class="row">
@@ -134,26 +174,50 @@
 
   					<!-- footer logo -->
   					<div class="footer-logo">
-  						<a href="index.html"><%= image_tag 'logo-alt.png', class: 'logo-alt' %></a>
+  						<a href="/"><%= image_tag 'techcore-logo-alt.png', class: 'logo-alt' %></a>
   					</div>
   					<!-- /footer logo -->
 
   					<!-- footer follow -->
   					<ul class="footer-follow">
-  						<li><a href="#"><i class="fa fa-facebook"></i></a></li>
-  						<li><a href="#"><i class="fa fa-twitter"></i></a></li>
-  						<li><a href="#"><i class="fa fa-google-plus"></i></a></li>
-  						<li><a href="#"><i class="fa fa-instagram"></i></a></li>
-  						<li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-  						<li><a href="#"><i class="fa fa-youtube"></i></a></li>
+              <li>
+                <a href="https://github.com/BrooklinJazz" target="_blank">
+                  <img src="https://avatars0.githubusercontent.com/u/14877564?s=400&v=4" alt="BrooklinJazz" width="50">
+                </a>
+              </li>
+              <li>
+                <a href="https://github.com/chilidoggca" target="_blank">
+                  <img src="https://avatars2.githubusercontent.com/u/32340800?s=460&v=4" alt="chilidoggca" width="50">
+                </a>
+              </li>
+              <li>
+                <a href="https://github.com/gustavoparolin" target="_blank">
+                  <img src="https://avatars3.githubusercontent.com/u/26214135?s=460&v=4" alt="gustavoparolin" width="50">
+                </a>
+              </li>
+              <li>
+                <a href="https://github.com/rhong1006" target="_blank">
+                  <img src="https://avatars3.githubusercontent.com/u/16049907?s=400&v=4" alt="rhong1006" width="50">
+                </a>
+              </li>
+              <li>
+                <a href="https://github.com/Shaun-Schwartz" target="_blank">
+                  <img src="https://avatars1.githubusercontent.com/u/33434280?s=460&v=4" alt="Shaun-Schwartz" width="50">
+                </a>
+              </li>
+              <li>
+                <a href="https://github.com/wdcunha" target="_blank">
+                  <img src="https://avatars2.githubusercontent.com/u/22294239?s=460&v=4" alt="wdcunha" width="50">
+                </a>
+              </li>
+              <li>
+                <a href="https://github.com/Shaun-Schwartz/tech-core" target="_blank">
+                  <%= image_tag 'github.png', class: 'footer-github' %>
+                </a>
+              </li>
   					</ul>
   					<!-- /footer follow -->
 
-  					<!-- footer copyright -->
-  					<div class="footer-copyright">
-  						<p>Copyright © 2017. All Rights Reserved. Designed by <a href="https://colorlib.com" target="_blank">Colorlib</a></p>
-  					</div>
-  					<!-- /footer copyright -->
 
   				</div>
 

@@ -3,10 +3,8 @@ class User < ApplicationRecord
   # resolved conflict by adding dependent: :destroy
   has_many :organizations, dependent: :destroy
 
-
   # geocoded_by :address
   # after_validation :geocode
-
 
   has_secure_password
 

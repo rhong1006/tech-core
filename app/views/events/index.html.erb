@@ -1,4 +1,7 @@
-<h1>Events</h1>
+<div class="row justify-content-center">
+  <div class="section-header text-center">
+    <h2 class="title">Events</h2>
+  </div>
 
 <div id="calendar"></div>
 <script type="text/javascript">
@@ -17,27 +20,27 @@ $('#calendar').fullCalendar({
 });
 </script>
 
-<table>
+<hr>
+
+  <div class="section-header text-center">
+    <h2 class="title">Events List</h2>
+  </div>
+
+<table class="table table-striped">
   <thead>
-    <tr>
-      <th>Title</th>
-      <th>Description</th>
-      <th>Location</th>
-      <th>Start time</th>
-      <th>End time</th>
-      <th colspan="3"></th>
+    <tr class="">
+      <th scope="col">Event</th>
+      <th scope="col">Location</th>
+      <th scope="col">Time</th>
     </tr>
   </thead>
 
   <tbody>
     <% @events.each do |event| %>
       <tr>
-        <td><%= event.title %></td>
-        <td><%= event.description %></td>
+        <td><%= link_to "#{event.title}", event %></td>
         <td><%= event.location %></td>
-        <td><%= event.start_time %></td>
-        <td><%= event.end_time %></td>
-        <td><%= link_to 'Show', event %></td>
+        <td><%= event.start_time.strftime("%b %d %l%p") %></td>
         <td><%#= link_to 'Edit', edit_event_path(event) %></td>
         <!-- edit event path is not yet set up -->
         <td><%#= link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' } %></td>
@@ -45,7 +48,4 @@ $('#calendar').fullCalendar({
     <% end %>
   </tbody>
 </table>
-
-<br>
-
-<%#= link_to 'New Event', new_event_path %>
+</div>

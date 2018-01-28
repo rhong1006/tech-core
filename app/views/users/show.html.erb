@@ -1,27 +1,10 @@
-<p>
-  <strong>First name:</strong>
-  <%= @user.first_name %>
-</p>
+<div class="row justify-content-center">
+  <div class="section-header text-center">
+    <h2 class="title">User</h2>
+  </div>
 
-<p>
-  <strong>Last name:</strong>
-  <%= @user.last_name %>
-</p>
-
-<p>
-  <strong>Email:</strong>
-  <%= @user.email %>
-</p>
-
-<p>
-  <strong>Password digest:</strong>
-  <%= @user.password_digest %>
-</p>
-
-<p>
-  <strong>Is admin:</strong>
-  <%= @user.is_admin %>
-</p>
-
-<%= link_to 'Edit', edit_user_path(@user) %> |
-<%= link_to 'Back', users_path %>
+  <div class="col-xs-2 col-sm-3"></div>
+  <div class="col-xs-8 col-sm-6 form">
+    <%= render 'form', user: @user %>
+  </div>
+</div>

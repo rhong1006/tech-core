@@ -16,13 +16,12 @@ class EventsController < ApplicationController
 
   # GET /events/new
   def new
-    # User must belong to an org to create an event
     if !current_user.organizations.present?
-      redirect_to new_organization_path,
-                    notice: 'Must belong to an organization to create an event'
-    else
-      @event = Event.new
-    end
+     redirect_to new_organization_path,
+                   alert: 'Must belong to an organization to create an event'
+   else
+     @event = Event.new
+   end
   end
 
   # GET /events/1/edit
@@ -32,9 +31,8 @@ class EventsController < ApplicationController
   # POST /events
   # POST /events.json
   def create
-    @event = Event.create(event_params)
-    @event.user = current_user
-    @event.save
+    @event = Event.new event_params
+    @event.organization = current_user.organizations.first
     respond_to do |format|
       if @event.save
         format.html { redirect_to @event, notice: 'Event was successfully created.' }
@@ -73,11 +71,18 @@ class EventsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
   def set_event
-    @event = Event.find(params[:id])
+    @event = Event.find params[:id]
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def event_params
     params.require(:event).permit(:title, :description, :location, :start_time, :end_time)
+  end
+
+  def authorize_user!
+    unless can?(:crud, @event)
+      flash[:alert] = "Access Denied!"
+      redirect_to home_path
+    end
   end
 end

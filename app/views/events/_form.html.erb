@@ -1,5 +1,6 @@
 <%= form_for @event, :url => {:action => 'create',
-                                    :controller => 'admin/events'} do |form| %>
+
+                                    :controller => 'events'} do |form| %>
 
 
   <div class="field">
@@ -29,5 +30,6 @@
 
   <div class="actions">
     <%= form.submit %>
+
   </div>
 <% end %>

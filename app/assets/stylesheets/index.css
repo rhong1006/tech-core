@@ -2,6 +2,24 @@ body {
   margin: 0;
 }
 
+main {
+  min-height: 60vh;
+  margin-bottom: 30px;
+}
+
+fieldset, .field {
+  margin: 8px !important;
+}
+
+
+form {
+  margin-bottom: 25px;
+}
+
+.form {
+  min-width: 350px;
+}
+
 .has-error > .help-block {
   color: red;
 }
@@ -20,8 +38,20 @@ body {
   border: 1px solid black;
 }
 
+.blog-img {
+  object-fit: cover;
+  height: 150px;
+  width: 100%;
+}
+
+.card :hover {
+  cursor: pointer;
+}
+
 .card > img {
-  width: 200px;
+  object-fit: cover;
+  max-width: 200px;
+  max-height: 140px;
   margin: 10px 20px;
 }
 

@@ -1,17 +1,33 @@
-<h1>News</h1>
-<%= render 'search_aritcle_form' %>
-<div>
+<div class="row">
+  <div class="section-header text-center">
+    <h2 class="title">News</h2>
+  </div>
+
+  <%= render 'search_article_form' %>
+  <!-- Main -->
+
   <% @filtered_article_arr.each do |article| %>
-    <h5><a href="<%=article.url%>"><%= article.title%></a></h5>
-    <p>
-    <span>
-      <%= (article.publishedAt < 5.days.ago) ?
-      DateTime.parse(article.publishedAt).to_formatted_s(:long) :
-      time_ago_in_words(article.publishedAt)%>
-    </span>
-    - Source: <strong><%= article.name %></strong>
-    </p>
-    <p><%= article.description%></p>
-    <hr />
-  <% end %>
+    <div class="col-md-4">
+      <div class="blog">
+        <div class="blog">
+          <%= image_tag(article.urlToImage, class:"img-responsive center-block blog-img") %>
+        </div>
+        <div class="blog-content">
+          <ul class="blog-meta">
+            <li><i class="fa fa-user"></i><%= article.name %></li>
+            <li><i class="fa fa-clock-o"></i><%= (article.publishedAt < 5.days.ago) ?
+            DateTime.parse(article.publishedAt).to_formatted_s(:long) :
+            time_ago_in_words(article.publishedAt)%></li>
+          </ul>
+          <h3><a href="<%=article.url%>" target="_blank"><%= article.title%></a></h3>
+          <p><%= article.description%></p>
+          <a href="<%=article.url%>" target="_blank">Read more</a>
+        </div>
+      </div>
+    </div>
+    <% end %>
+
+  <!-- /Main -->
+
 </div>
+<!-- /Row -->
