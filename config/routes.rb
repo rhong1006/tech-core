@@ -6,7 +6,7 @@ Rails.application.routes.draw do
     resources :events, only: [:new, :create, :show, :edit, :update, :destroy], shallow: true
   end
 
-  resources :users, only: [:index, :new, :create, :edit, :update, :destroy] do
+  resources :users, except: [:index] do
     resources :organizations, only: [:show, :create, :update], shallow: true
   end
 
