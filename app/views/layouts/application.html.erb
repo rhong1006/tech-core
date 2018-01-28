@@ -56,6 +56,20 @@
                   <li><%= link_to("Events admin", admin_events_path) %></li>
                   <li><%= link_to("Users admin", admin_users_path) %></li>
                 <% end %>
+
+                <% if current_user&.organizations.present? && !current_user.is_admin? %>
+                  <li><%= link_to("Organization", organization_path(current_user)) %></li>
+                <% elsif current_user && !current_user.is_admin? %>
+                  <li><%= link_to("Create Organization", new_organization_path) %></li>
+                <% end %>
+
+                <!-- TODO update link to edit Event after Rina fixes associations -->
+                <% if current_user && !current_user.is_admin? %>
+                  <li><%= link_to("Events", home_path) %></li>
+                <% elsif current_user && !current_user.is_admin? %>
+                  <li><%= link_to("Create Event", events_new_path) %></li>
+                <% end %>
+
                 <li><%= link_to('Sign Out', session_path, method: :delete, data: {confirm: 'Do you really want to sign out?'}) %></li>
   						</ul>
   					</li>
