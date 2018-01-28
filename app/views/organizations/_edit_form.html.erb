@@ -1,0 +1,52 @@
+<%= form_for @organization,  method: "patch" do |form| %>
+
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name, id: :organization_name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :address %>
+    <%= form.text_field :address, id: :organization_address %>
+  </div>
+
+  <div class="field">
+    <%= form.label :overview %>
+    <%= form.text_area :overview, id: :organization_overview %>
+  </div>
+
+  <div class="field">
+    <%= form.label :employees %>
+    <%= form.number_field :employees, id: :organization_employees %>
+  </div>
+
+  <div class="field">
+    <%= form.label :tech_team_size %>
+    <%= form.number_field :tech_team_size, id: :organization_tech_team_size %>
+  </div>
+
+  <div class="field">
+    <%= form.label :website %>
+    <%= form.text_field :website, id: :organization_website %>
+  </div>
+
+  <div class="field">
+    <%= form.label :twitter %>
+    <%= form.text_field :twitter, id: :organization_twitter %>
+  </div>
+
+  <div class="field">
+    <%= form.label :logo %>
+    <%= form.file_field :logo, id: :organization_logo %>
+  </div>
+
+  <div class="field">
+    <%= form.label :published %>
+    <%= form.check_box :published, id: :organization_published %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

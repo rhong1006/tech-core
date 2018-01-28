@@ -67,10 +67,10 @@ class OrganizationsController < ApplicationController
     respond_to do |format|
       if @organization.update(organization_params)
         format.html { redirect_to @organization, notice: 'Organization was successfully updated.' }
-        format.json { render :show, status: :ok, location: @organization }
+        # format.json { render :show, status: :ok, location: @organization }
       else
         format.html { render :edit }
-        format.json { render json: @organization.errors, status: :unprocessable_entity }
+        # format.json { render json: @organization.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -88,7 +88,11 @@ class OrganizationsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_organization
-      @organization = Organization.find(params[:id])
+      if @organization
+        @organization = Organization.find(params[:id])
+      else
+        redirect_to home_path
+      end 
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
@@ -97,7 +101,7 @@ class OrganizationsController < ApplicationController
     end
 
     def authorize_user!
-      unless can?(:manage, @organization)
+      unless can?(:crud, @organization)
         flash[:alert] = "Access Denied!"
         redirect_to home_path
       end
