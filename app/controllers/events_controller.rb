@@ -1,5 +1,7 @@
 class EventsController < ApplicationController
   before_action :set_event, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!, except: [:show, :index]
+  before_action :authorize_user!, only: [:edit, :update, :destroy]
 
   # GET /events
   # GET /events.json
@@ -14,7 +16,13 @@ class EventsController < ApplicationController
 
   # GET /events/new
   def new
-    @event = Event.new
+    # User must belong to an org to create an event
+    if !current_user.organizations.present?
+      redirect_to new_organization_path,
+                    notice: 'Must belong to an organization to create an event'
+    else
+      @event = Event.new
+    end
   end
 
   # GET /events/1/edit
@@ -24,15 +32,16 @@ class EventsController < ApplicationController
   # POST /events
   # POST /events.json
   def create
-    @event = Event.new(event_params)
-
+    @event = Event.create(event_params)
+    @event.user = current_user
+    @event.save
     respond_to do |format|
       if @event.save
         format.html { redirect_to @event, notice: 'Event was successfully created.' }
-        format.json { render :show, status: :created, location: @event }
+        # format.json { render :show, status: :created, location: @event }
       else
         format.html { render :new }
-        format.json { render json: @event.errors, status: :unprocessable_entity }
+        # format.json { render json: @event.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -63,12 +72,12 @@ class EventsController < ApplicationController
 
   private
     # Use callbacks to share common setup or constraints between actions.
-    def set_event
-      @event = Event.find(params[:id])
-    end
+  def set_event
+    @event = Event.find(params[:id])
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def event_params
-      params.require(:event).permit(:title, :description, :location, :start_time, :end_time)
-    end
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def event_params
+    params.require(:event).permit(:title, :description, :location, :start_time, :end_time)
+  end
 end
