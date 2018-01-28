@@ -18,6 +18,14 @@ class OrganizationsController < ApplicationController
     else
         @organizations = Organization.all
     end
+
+    # send localizations fot index page
+    @markers = Gmaps4rails.build_markers(@organizations) do |organization, marker|
+      marker.lat organization.latitude
+      marker.lng organization.longitude
+      marker.infowindow "<a href='#{organization_path(organization.id)}'>#{organization.name}</a>"
+    end
+
   end
 
   # GET /organizations/1
