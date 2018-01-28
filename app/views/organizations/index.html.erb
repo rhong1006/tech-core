@@ -19,19 +19,20 @@
 
 <div class="row justify-content-center">
   <% @organizations.each do |organization| %>
-    <div class="col-8 col-sm-6 col-md-4 col-lg-3">
-      <div class="card sm-6 mb-4 lg-3 box-shadow about center-block" onclick="javascript=window.location = '<%= organization_path(organization) %>'">
-        <% if organization.logo.present? %>
-          <%= image_tag(organization.logo) %>
-        <% else %>
-          <%= image_tag('placeholder.png') %>
-        <% end %>
-        <div class="card-body">
-          <!-- TODO this link_to only re-renders the page. it should link to the organization show page given the id parameter. -->
-          <p class="card-title"><%= link_to organization.name,  organization_path(organization) %></p>
-          <p class="card-text"><%= organization.employees %> employees</p>
+   <% if organization.published? %>
+      <div class="col-8 col-sm-6 col-md-4 col-lg-3">
+        <div class="card sm-6 mb-4 lg-3 box-shadow about center-block" onclick="javascript=window.location = '<%= organization_path(organization) %>'">
+          <% if organization.logo.present? %>
+            <%= image_tag(organization.logo) %>
+          <% else %>
+            <%= image_tag('placeholder.png') %>
+          <% end %>
+          <div class="card-body">
+            <p class="card-title"><%= link_to organization.name,  organization_path(organization) %></p>
+            <p class="card-text"><%= organization.employees %> employees</p>
+          </div>
         </div>
       </div>
-    </div>
+    <% end %>
   <% end %>
 </div>
