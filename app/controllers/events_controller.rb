@@ -49,7 +49,11 @@ class EventsController < ApplicationController
   # DELETE /events/1
   def destroy
     @event.destroy
-      redirect_to events_url, notice: 'Event was successfully destroyed.'
+
+    respond_to do |format|
+      # redirect to my organization show page
+      format.html { redirect_to organization_url(current_user.organizations.first), notice: 'Event was successfully destroyed.' }
+      format.json { head :no_content }
     end
   end
 

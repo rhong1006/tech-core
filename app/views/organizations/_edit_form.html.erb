@@ -29,5 +29,8 @@
 </fieldset>
 <div class="text-center">
   <%= form.submit class: "btn btn-primary" %>
+  <%= link_to 'Delete My Organization',
+    organization_path(@organization),
+    method: :delete, data: {confirm: 'Are you sure?'}, class: "btn btn-danger"  %>
 </div>
 <% end %>

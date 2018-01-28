@@ -24,12 +24,12 @@
 </p>
 
 <%if can?(:crud, @event) %>
-  <%= link_to 'Edit', edit_event_path(@event) %>
+  <%= link_to 'Edit', edit_event_path(@event), class: 'btn btn-primary' %>
   <%= link_to(
     'Delete',
      event_path(@event),
     data: {confirm: 'Are you sure?'},
-    method: :delete
+    method: :delete,
+    class: 'btn btn-danger'
   ) %>
-  <%= link_to 'Back', events_path %>
 <% end %>

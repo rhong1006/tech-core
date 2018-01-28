@@ -44,19 +44,20 @@
   <%= @organization.twitter %>
 </p>
 
-<p>
-  <strong>Published:</strong>
-  <%= @organization.published %>
-</p>
 <% if can?(:crud, @organization) %>
+<!-- only owners of an organization can see publish status -->
+  <p>
+    <strong>Published:</strong>
+    <%= @organization.published %>
+  </p>
+<!--  end of block -->
   <div class="section-header text-center">
     <h2 class="title">Update Organization</h2>
   </div>
   <%= render 'edit_form' %>
+  <!-- Moved delete button to edit form template <%= link_to 'Delete My Organization',
+    organization_path(@organization),
+    method: :delete, data: {confirm: 'Are you sure?'}, class: "btn btn-danger"  %> -->
 <% end %>
 
-<%= link_to 'Delete Organization', organization_path(@organization),
-                        method: :delete, data: {confirm: 'Are you sure?'}, class: "btn btn-danger"  %>
-
-<%= link_to 'Back', organizations_path, class: "btn btn-info" %>
 </div>

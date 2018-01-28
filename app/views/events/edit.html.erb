@@ -8,34 +8,39 @@
   <% end %>
   <div class="field">
     <%= form.label :title %>
-    <%= form.text_field :title, id: :event_title %>
+    <%= form.text_field :title, id: :event_title, class: 'form-control' %>
   </div>
 
   <div class="field">
     <%= form.label :description %>
-    <%= form.text_area :description, id: :event_description %>
+    <%= form.text_area :description, id: :event_description, class: 'form-control' %>
   </div>
 
   <div class="field">
     <%= form.label :location %>
-    <%= form.text_field :location, id: :event_location %>
+    <%= form.text_field :location, id: :event_location, class: 'form-control' %>
   </div>
 
   <div class="field">
     <%= form.label :start_time %>
-    <%= form.datetime_select :start_time, id: :event_start_time %>
+    <%= form.datetime_select :start_time, id: :event_start_time, class: 'form-control' %>
   </div>
 
   <div class="field">
     <%= form.label :end_time %>
-    <%= form.datetime_select :end_time, id: :event_end_time %>
+    <%= form.datetime_select :end_time, id: :event_end_time, class: 'form-control' %>
   </div>
 
   <div class="actions">
-    <%= form.submit %>
+    <%= link_to 'Back to My Event', @event, class: 'btn btn-info',
+      data: {confirm: 'You are about to cancel your changes. Are you sure?'} %>
+    <%= form.submit class: 'btn btn-primary' %>
+    <%= link_to(
+      'Delete',
+       event_path(@event),
+      data: {confirm: 'Are you sure?'},
+      method: :delete,
+      class: 'btn btn-danger'
+    ) %>
   </div>
 <% end %>
-
-
-<%= link_to 'Show', @event %> |
-<%= link_to 'Back', events_path %>

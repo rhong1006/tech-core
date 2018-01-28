@@ -65,7 +65,7 @@
                 <% end %>
                 <!-- User with an organization -->
                 <% if current_user&.organizations.present? && !current_user.is_admin? %>
-                  <li><%= link_to("Organization", organization_path(current_user.organizations.first)) %></li>
+                  <li><%= link_to current_user.organizations.first.name, organization_path(current_user.organizations.first) %></li>
                 <!-- User without organization -->
                 <li><%= link_to 'Create Event', new_organization_event_path(current_user) %></li>
                 <% elsif current_user && !current_user.is_admin? %>
@@ -158,8 +158,10 @@
           <div class="col-xs-4 footer-links">
             <!-- footer copyright -->
             <p>
-              <%=link_to 'Sign In', new_session_path %><br />
-              <%=link_to 'Sign Up', new_user_path %><br />
+              <% if !user_signed_in? %>
+                <%=link_to 'Sign In', new_session_path %><br />
+                <%=link_to 'Sign Up', new_user_path %><br />
+              <% end %>
               <%=link_to 'About', about_path %><br />
             </p>
             <!-- /footer copyright -->
@@ -180,9 +182,9 @@
   				<div class="col-md-12">
 
   					<!-- footer logo -->
-  					<div class="footer-logo">
+  					<!-- <div class="footer-logo">
   						<a href="/"><%= image_tag 'techcore-logo-alt.png', class: 'logo-alt' %></a>
-  					</div>
+  					</div> -->
   					<!-- /footer logo -->
 
   					<!-- footer follow -->
