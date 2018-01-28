@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   resources :users, only: [:new, :create, :destroy] do
     resources :organizations, only: [:show, :create, :update], shallow: true
   end
-  
+
   resource :session, only: [:new, :create, :destroy]
 
   namespace :admin, only: [:index] do

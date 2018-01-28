@@ -1,5 +1,13 @@
 <%= form_with(model: organization, local: true) do |form| %>
 
+<!-- NOTE this organization erros message may have bugs if there is no error message? testing required -->
+      <ul>
+      <% organization.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
 
   <fieldset>
     <%= form.text_field :name, class: "form-control", placeholder: "Name" %>
