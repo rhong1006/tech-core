@@ -10,7 +10,7 @@ class UsersController < ApplicationController
   # GET /users/1
   # GET /users/1.json
   def show
-    set_user
+  set_user
   end
 
   # GET /users/new
@@ -44,7 +44,13 @@ class UsersController < ApplicationController
   def update
     respond_to do |format|
       if @user.update(user_params)
-        format.html { redirect_to @user, notice: 'User was successfully updated.' }
+        if current_user.is_admin?
+          flash[:success] = 'User changed successfully!'
+          # redirect_to admin_users_path
+          format.html { redirect_to admin_users_path, notice: 'User was successfully updated.' }
+        else
+          format.html { redirect_to @user, notice: 'User was successfully updated.' }
+        end
         format.json { render :show, status: :ok, location: @user }
       else
         format.html { render :edit }

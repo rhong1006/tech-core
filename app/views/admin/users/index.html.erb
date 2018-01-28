@@ -3,7 +3,7 @@
     <h2 class="title">Users (Admin)</h2>
   </div>
 
-  <%= render 'form', user: @user %>
+  <%= render 'users/form', user: @user %>
 
   <hr>
 
@@ -24,7 +24,7 @@
     <tbody>
       <% @users.each do |user| %>
         <tr>
-          <td><%= link_to "#{user.first_name} #{user.last_name}", admin_user_path(user), method: :show %></td>
+          <td><%= link_to "#{user.first_name} #{user.last_name}", edit_user_path(user) %></td>
           <td><%= user.email %></td>
           <td><b><%= user.is_admin %></b></td>
           <td><%= link_to 'Delete', admin_user_path(user), method: :delete,

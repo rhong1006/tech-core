@@ -6,7 +6,7 @@ Rails.application.routes.draw do
     resources :events, only: [:new, :create, :show, :edit, :update, :destroy], shallow: true
   end
 
-  resources :users, only: [:new, :create, :destroy] do
+  resources :users, only: [:index, :new, :create, :edit, :update, :destroy] do
     resources :organizations, only: [:show, :create, :update], shallow: true
   end
 
@@ -15,7 +15,7 @@ Rails.application.routes.draw do
   namespace :admin, only: [:index] do
     resources :events, only: [:index, :create, :destroy]
     resources :organizations, only: [:index, :create, :destroy]
-    resources :users, only: [:index, :create, :destroy]
+    resources :users, only: [:index, :create, :edit, :update, :destroy]
   end
 
   resources :welcome, only: [:about]

@@ -1,4 +1,6 @@
-<%= form_with(model: user, local: true) do |form| %>
+
+  <%= form_with(model: user, local: true) do |form| %>
+
   <% if user.errors.any? %>
     <div id="error_explanation">
       <h4><%= pluralize(user.errors.count, "error") %> prohibited this user from being saved:</h4>
@@ -20,16 +22,21 @@
   <fieldset>
     <%= form.email_field :email, class: "form-control", placeholder: "Email" %>
   </fieldset>
-  <fieldset>
-    <%= form.password_field :password, class: "form-control", placeholder: "Password" %>
-  </fieldset>
-  <fieldset>
-    <%= form.password_field :password_confirmation, class: "form-control", placeholder: "Password confirmation" %>
-  </fieldset>
-  <fieldset>
-    <%= form.label :is_admin, 'Is administrator?' %>
-    <%= form.check_box :is_admin %>
-  </fieldset>
+
+  <% if current_user&.is_admin? %>
+    <fieldset>
+      <%= form.label :is_admin, 'Is administrator?' %>
+      <%= form.check_box :is_admin %>
+    </fieldset>
+  <% else %>
+    <fieldset>
+      <%= form.password_field :password, class: "form-control", placeholder: "Password" %>
+    </fieldset>
+    <fieldset>
+      <%= form.password_field :password_confirmation, class: "form-control", placeholder: "Password confirmation" %>
+    </fieldset>
+  <% end %>
+
   <div class="text-center">
     <%= form.submit 'Submit', class: "btn btn-primary" %>
   </div>
