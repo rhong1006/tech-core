@@ -17,7 +17,7 @@ class NewsController < ApplicationController
   def news_api
     newsapi = News.new("c4b4a385626c44c892860ce47a35dc7a")
     @all_articles = newsapi.get_everything(
-      q: 'Chinese',
+      q: 'tech',
       sources: 'bbc-news,the-verge',
       domains: 'bbc.co.uk,techcrunch.com',
       from: '2017-12-01',
