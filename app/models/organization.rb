@@ -5,16 +5,17 @@ class Organization < ApplicationRecord
 
   has_many :events, dependent: :destroy
 
+  validates :name, presence: true
+  validates :address, presence: true
+  validates :overview, presence: true
+  validates :employees, presence: true
+  validates :tech_team_size, presence: true
+  validates :website, presence: true
+  validates :logo, presence: true
+
   mount_uploader :logo, LogoUploader
 
-  # NOTE remove validations from seed file because the seed generates random text, not images
-  # validates :logo, presence: true
-
   # NOTE geocoded is overloaded and gives an API error
-  # geocoded_by :address
-  # after_validation :geocode
-
-
   # geocoded_by :address
   # after_validation :geocode
 
