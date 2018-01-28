@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   get('/admin', to: 'admin#index')
 
+  resources :news, only: [:index]
+
   resources :organizations, only: [:new, :create, :show, :index] do
     resources :events, only: [:new, :create, :show], shallow: true
   end

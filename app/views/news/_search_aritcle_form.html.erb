@@ -1,0 +1,8 @@
+<h5>Search Article</h5>
+<%= form_for :news, method: :get, url: news_index_path do |f| %>
+  <div>
+    <%= f.label :search_article %>
+    <%= f.text_field :search_article%>
+  </div>
+  <%= f.submit 'Search'%>
+<% end %>
