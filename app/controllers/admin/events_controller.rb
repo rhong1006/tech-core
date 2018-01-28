@@ -2,12 +2,15 @@ class Admin::EventsController < ApplicationController
   before_action :is_admin!
 
   def index
+    @event = Event.new
     @events = Event.all
   end
 
   def create
-    @event = Event.new event_params
+    @event = Event.create event_params
+    @event.save
     if @event.save
+      redirect_to admin_events_path
       flash[:notice] = "Event saved"
     else
       flash[:alert] = "Event coult not be created"
@@ -15,7 +18,7 @@ class Admin::EventsController < ApplicationController
   end
 
   def destroy
-    event = Event.find_by params[:event_id]
+    event = Event.find params[:id]
     event.destroy
     flash[:notice] = "Event deleted"
     redirect_to admin_events_path

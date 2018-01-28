@@ -33,3 +33,4 @@ class Admin::OrganizationsController < ApplicationController
   end
 
 end
+ 

@@ -7,25 +7,27 @@ class OrganizationsController < ApplicationController
   # GET /organizations.json
   def index
     organization_keyword = params[:organization]
-    # puts "===============organization_keyword ===================="
-    # puts organization_keyword
-
-
     if organization_keyword
       keyword_type = organization_keyword.keys.first
       keyword = organization_keyword[keyword_type]
-      puts "===============keyword.length===================="
-      puts keyword
-      # puts "===============keyword_type matches ?===================="
-      # puts organization_keyword.keys == ["search_name"]
       if keyword_type  == "search_name"
         @organizations = Organization.search_by_name(keyword)
       elsif keyword_type == "tag_ids"
-        @organizations = Organization.search_by_tag(keyword.map{|kw| kw if kw.present?}) #passing an array of tag_ids to function
+        @organizations = Organization.search_by_tag(keyword.map{|kw| kw if kw.present?})
+      elsif keyword_type == "tech_size"
+        @organizations = Organization.search_by_tech_size(keyword.to_i)
       end
     else
         @organizations = Organization.all
     end
+
+    # send localizations fot index page
+    @markers = Gmaps4rails.build_markers(@organizations) do |organization, marker|
+      marker.lat organization.latitude
+      marker.lng organization.longitude
+      marker.infowindow "<a href='#{organization_path(organization.id)}'>#{organization.name}</a>"
+    end
+
   end
 
   # GET /organizations/1

@@ -15,6 +15,8 @@
 //= require popper
 //= require bootstrap
 //= require rails-ujs
+//= require underscore
+//= require gmaps/google
 //= require moment
 //= require fullcalendar
 //= require fullcalendar/gcal

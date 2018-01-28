@@ -46,6 +46,7 @@ gem 'friendly_id', '~> 5.2.3'
 gem 'carrierwave', '~> 1.0'
 gem 'mini_magick'
 gem 'fog'
+gem 'news-api'
 gem 'geocoder'
 gem 'gmaps4rails'
 gem 'underscore-rails'
@@ -53,6 +54,7 @@ gem 'cocoon'
 gem 'jwt'
 gem 'fullcalendar-rails'
 gem 'momentjs-rails'
+gem 'seed_dump'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
