@@ -58,7 +58,7 @@
                 <% end %>
 
                 <% if current_user&.organizations.present? && !current_user.is_admin? %>
-                  <li><%= link_to("Organization", organization_path(current_user)) %></li>
+                  <li><%= link_to("Organization", organization_path(current_user.organizations.first)) %></li>
                 <% elsif current_user && !current_user.is_admin? %>
                   <li><%= link_to("Create Organization", new_organization_path) %></li>
                 <% end %>

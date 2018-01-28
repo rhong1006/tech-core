@@ -37,7 +37,11 @@ class OrganizationsController < ApplicationController
 
   # GET /organizations/new
   def new
-    @organization = Organization.new
+    if current_user.organizations.first.present?
+      redirect_to home_path
+    else
+      @organization = Organization.new
+    end
   end
 
   # GET /organizations/1/edit
@@ -47,16 +51,19 @@ class OrganizationsController < ApplicationController
   # POST /organizations
   # POST /organizations.json
   def create
-    @organization = Organization.new(organization_params)
-    @organization.user = current_user
-
-    respond_to do |format|
-      if @organization.save
-        format.html { redirect_to @organization, notice: 'Organization was successfully created.' }
-        format.json { render :show, status: :created, location: @organization }
-      else
-        format.html { render :new }
-        format.json { render json: @organization.errors, status: :unprocessable_entity }
+    if current_user.organizations.first.present?
+      head :unauthorized
+    else
+      @organization = Organization.new(organization_params)
+      @organization.user = current_user
+      respond_to do |format|
+        if @organization.save
+          format.html { redirect_to @organization, notice: 'Organization was successfully created.' }
+          format.json { render :show, status: :created, location: @organization }
+        else
+          format.html { render :new }
+          format.json { render json: @organization.errors, status: :unprocessable_entity }
+        end
       end
     end
   end
@@ -91,7 +98,7 @@ class OrganizationsController < ApplicationController
       @organization = Organization.find(params[:id])
       if !@organization
         redirect_to home_path
-      end 
+      end
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
