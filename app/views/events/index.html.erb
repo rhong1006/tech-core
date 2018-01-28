@@ -23,8 +23,7 @@ $('#calendar').fullCalendar({
       <th>Title</th>
       <th>Description</th>
       <th>Location</th>
-      <th>Start time</th>
-      <th>End time</th>
+      <th>Date</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -35,8 +34,7 @@ $('#calendar').fullCalendar({
         <td><%= event.title %></td>
         <td><%= event.description %></td>
         <td><%= event.location %></td>
-        <td><%= event.start_time %></td>
-        <td><%= event.end_time %></td>
+        <td><%= event.start_time.strftime("%b %d") %></td>
         <td><%= link_to 'Show', event %></td>
         <td><%#= link_to 'Edit', edit_event_path(event) %></td>
         <!-- edit event path is not yet set up -->
