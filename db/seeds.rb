@@ -11,22 +11,22 @@ PASSWORD = '123'
 
 
 
+# Admin with Company
 super_user = User.create(
-  first_name: 'a',
+  first_name: 'Alexander',
   last_name: 'a',
   email: 'a@a.a',
   password: PASSWORD,
   is_admin: true
 )
-
+# Non Admin with company
 super_user_B = User.create(
-  first_name: 'Alexander',
+  first_name: 'Robert',
   last_name: 'a',
   email: 'a@a.com',
   password: PASSWORD,
-  is_admin: true
+  is_admin: false
 )
-
 
 80.times.each do
   first_name = Faker::Name.first_name

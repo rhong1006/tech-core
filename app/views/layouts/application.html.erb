@@ -65,13 +65,16 @@
                 <% end %>
                 <!-- User with an organization -->
                 <% if current_user&.organizations.present? && !current_user.is_admin? %>
+
                   <li><%= link_to current_user.organizations.first.name, organization_path(current_user.organizations.first) %></li>
+
                 <!-- User without organization -->
                 <li><%= link_to 'Create Event', new_organization_event_path(current_user) %></li>
                 <% elsif current_user && !current_user.is_admin? %>
                   <li><%= link_to("Create Organization", new_organization_path) %></li>
                 <% end %>
-
+                <!-- For all users -->
+                <li><%= link_to("My Account", current_user) %></li>
                 <!-- TODO update link to edit Event after Rina fixes associations -->
                 <!-- <% if current_user && !current_user.is_admin? %>
                   <li><%= link_to("Events", events_path) %></li>
