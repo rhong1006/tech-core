@@ -46,7 +46,7 @@ users.each do |user|
     tech_team_size: rand(10..25),
     website: Faker::Book.title,
     twitter: Faker::Code.asin,
-    # logo: Faker::Company.logo,
+    logo: Faker::Company.logo,
     published: true,
     user_id: user.id
   )
