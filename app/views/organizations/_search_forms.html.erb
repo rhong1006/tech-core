@@ -1,37 +1,43 @@
 <!-- TODO change the styling  of this form that renders on organizations/index-->
-<h5>Search By Name</h5>
-<%= form_for :organization, method: :get, url: organizations_path do |f| %>
-  <div>
-    <%= f.label :search_name %>
-    <%= f.text_field :search_name %>
-  </div>
-  <%= f.submit 'Search'%>
+<%= form_for :organization, method: :get, url: organizations_path, class: "form-horizontal" do |f| %>
+  <fieldset class="row">
+    <div class="col-xs-8">
+      <%= f.text_field :search_name, class: "form-control form-horizontal", placeholder: "Search by name" %>
+    </div>
+    <div class="col-xs-4">
+      <%= f.submit 'Search by name', class: "btn btn-primary" %>
+    </div>
+  </fieldset>
 <% end %>
 
-<h5>Search By Tags</h5>
-<%= form_for :organization, method: :get, url: organizations_path do |f| %>
-  <div>
-    <%= f.label :tags %> <br />
+<%= form_for :tags, method: :get, url: organizations_path do |f| %>
+<fieldset class="row">
+  <div class="col-xs-8">
     <%= f.collection_select(
-     :tag_ids,
-     Tag.order(:name),
-     :id,
-     :name,
-     {},
-     {
-       multiple: true,
-       class: 'chosen-select'
-     }
-    ) %>
+      :tag_ids,
+      Tag.order(:name),
+      :id,
+      :name,
+      {},
+      {
+        multiple: true,
+        class: 'chosen-select'
+        }
+        ) %>
   </div>
-  <%= f.submit 'Search'%>
+  <div class="col-xs-4">
+    <%= f.submit 'Search by tag', class: "btn btn-primary" %>
+  </div>
+</fieldset>
 <% end %>
 
-<h5>Search By Tech Team Size</h5>
 <%= form_for :organization, method: :get, url: organizations_path do |f| %>
-  <div>
-    <%= f.label :tech_size %>
-    <%= f.text_field :tech_size %>
+<fieldset class="row">
+  <div class="col-xs-8">
+    <%= f.text_field :tech_size, class: "form-control", placeholder: "Search by Tech Team Size" %>
   </div>
-  <%= f.submit 'Search'%>
+  <div class="col-xs-4">
+    <%= f.submit 'Search by Team Size', class: "btn btn-primary" %>
+  </div>
+</fieldset>
 <% end %>

@@ -65,7 +65,7 @@
 
                 <!-- TODO update link to edit Event after Rina fixes associations -->
                 <% if current_user && !current_user.is_admin? %>
-                  <li><%= link_to("Events", home_path) %></li>
+                  <li><%= link_to("Events", events_path) %></li>
                 <% elsif current_user && !current_user.is_admin? %>
                   <li><%= link_to("Create Event", events_new_path) %></li>
                 <% end %>

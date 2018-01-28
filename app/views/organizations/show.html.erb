@@ -1,4 +1,9 @@
-<% if @organization.logo.present? %>
+<div class="row justify-content-center">
+  <div class="section-header text-center">
+    <h2 class="title">Organization</h2>
+  </div>
+
+  <% if @organization.logo.present? %>
   <%= image_tag(@organization.logo, class:"img-responsive center-block") %>
 <% else %>
   <%= image_tag('placeholder.png', class:"img-responsive center-block") %>
@@ -46,8 +51,18 @@
 <% if can?(:crud, @organization) %>
   <p><h3>Update Organization</h3></p>
   <%= render 'edit_form' %>
-
-  <p><%= link_to 'Delete Organization', organization_path(@organization),
-                          method: :delete, data: {confirm: 'Are you sure?'} %></p>
 <% end %>
-<%= link_to 'Back', organizations_path %>
+
+<hr />
+
+<div class="section-header text-center">
+  <h2 class="title">Update Organization</h2>
+</div>
+
+<%= render 'edit_form' %>
+
+<%= link_to 'Delete Organization', organization_path(@organization),
+                        method: :delete, data: {confirm: 'Are you sure?'}, class: "btn btn-danger"  %>
+
+<%= link_to 'Back', organizations_path, class: "btn btn-info" %>
+</div>
