@@ -23,7 +23,13 @@
   <%= @event.end_time %>
 </p>
 
-<!--
-Commented out below links as they are not yet set up
-<%#= link_to 'Edit', edit_event_path(@event) %> |
-<%#= link_to 'Back', events_path %> -->
+<%if can?(:crud, @event) %>
+  <%= link_to 'Edit', edit_event_path(@event) %>
+  <%= link_to(
+    'Delete',
+     event_path(@event),
+    data: {confirm: 'Are you sure?'},
+    method: :delete
+  ) %>
+  <%= link_to 'Back', events_path %>
+<% end %>

@@ -33,5 +33,9 @@ class Ability
     can :crud, Organization do |organization|
       user == organization.user
     end
+
+    can :crud, Event do |event|
+      user == event.organization.user
+    end
   end
 end

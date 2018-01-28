@@ -1,11 +1,11 @@
 Rails.application.routes.draw do
   get('/admin', to: 'admin#index')
-  get('/events/new', to: 'events#new')
+  # get('/events/new', to: 'events#new')
 
   resources :news, only: [:index]
-
+  resources :events, only:[:index]
   resources :organizations, only: [:new, :create, :show, :index, :destroy] do
-    resources :events, only: [:new, :create, :show], shallow: true
+    resources :events, only: [:new, :create, :show, :edit, :update, :destroy], shallow: true
   end
 
   resources :users, only: [:new, :create, :destroy] do
@@ -13,7 +13,6 @@ Rails.application.routes.draw do
   end
   
   resource :session, only: [:new, :create, :destroy]
-  resources :events, only:[:index, :create, :destroy]
 
   namespace :admin, only: [:index] do
     resources :events, only: [:index, :create, :destroy]

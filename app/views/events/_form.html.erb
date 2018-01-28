@@ -1,24 +1,35 @@
 <%= form_for @event, :url => {:action => 'create',
-                                    :controller => 'admin/events'} do |form| %>
-  <fieldset>
-    <%= form.text_field :title, class: "form-control", placeholder: "Title" %>
-  </fieldset>
-  <fieldset>
-    <%= form.text_area :description, class: "form-control", placeholder: "Description" %>
-  </fieldset>
-  <fieldset>
-    <%= form.text_field :location, class: "form-control", placeholder: "Location" %>
-  </fieldset>
-  <fieldset>
-    <%= form.datetime_select :start_time, class: "form-control", placeholder: "Start date" %>
-  </fieldset>
-  <fieldset>
-    <%= form.datetime_select :end_time, class: "form-control", placeholder: "End date" %>
-  </fieldset>
-  <fieldset>
-    <%= form.text_field :organization_id, class: "form-control", placeholder: "Organization" %>
-  </fieldset>
-  <div class="text-center">
-    <%= form.submit class: "btn btn-primary" %>
+
+                                    :controller => 'events'} do |form| %>
+
+
+  <div class="field">
+    <%= form.label :title %>
+    <%= form.text_field :title, id: :event_title %>
+  </div>
+
+  <div class="field">
+    <%= form.label :description %>
+    <%= form.text_area :description, id: :event_description %>
+  </div>
+
+  <div class="field">
+    <%= form.label :location %>
+    <%= form.text_field :location, id: :event_location %>
+  </div>
+
+  <div class="field">
+    <%= form.label :start_time %>
+    <%= form.datetime_select :start_time, id: :event_start_time %>
+  </div>
+
+  <div class="field">
+    <%= form.label :end_time %>
+    <%= form.datetime_select :end_time, id: :event_end_time %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+
   </div>
 <% end %>
