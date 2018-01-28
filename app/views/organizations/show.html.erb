@@ -49,17 +49,11 @@
   <%= @organization.published %>
 </p>
 <% if can?(:crud, @organization) %>
-  <p><h3>Update Organization</h3></p>
+  <div class="section-header text-center">
+    <h2 class="title">Update Organization</h2>
+  </div>
   <%= render 'edit_form' %>
 <% end %>
-
-<hr />
-
-<div class="section-header text-center">
-  <h2 class="title">Update Organization</h2>
-</div>
-
-<%= render 'edit_form' %>
 
 <%= link_to 'Delete Organization', organization_path(@organization),
                         method: :delete, data: {confirm: 'Are you sure?'}, class: "btn btn-danger"  %>
