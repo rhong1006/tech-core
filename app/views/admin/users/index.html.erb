@@ -1,24 +1,36 @@
-<%= render 'form', user: @user %>
+<div class="row justify-content-center">
+  <div class="section-header text-center">
+    <h2 class="title">Users (Admin)</h2>
+  </div>
 
-<h1>Users</h1>
-<table>
-  <tbody>
-    <tr>
-      <th>User Name</th>
-      <th>Email</th>
-      <th>Admin</th>
-      <th>Action</th>
-    </tr>
+  <%= render 'form', user: @user %>
 
-    <% @users.each do |user| %>
-      <tr>
-        <td><%= "#{user.first_name} #{user.last_name}" %></td>
-        <td><%= user.email %></td>
-        <td><b><%= user.is_admin %></b></td>
-        <td><%= link_to 'Delete', admin_user_path(user), method: :delete,
-                                  data: {confirm: 'Are you sure?'} %></td>
+  <hr>
 
+  <div class="section-header text-center">
+    <h2 class="title">Users List</h2>
+  </div>
+
+  <table class="table table-striped">
+    <thead>
+      <tr class="">
+        <th scope="col">User Name</th>
+        <th scope="col">Email</th>
+        <th scope="col">Admin?</th>
+        <th scope="col">Action</th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
+
+    <tbody>
+      <% @users.each do |user| %>
+        <tr>
+          <td><%= link_to "#{user.first_name} #{user.last_name}", admin_user_path(user), method: :show %></td>
+          <td><%= user.email %></td>
+          <td><b><%= user.is_admin %></b></td>
+          <td><%= link_to 'Delete', admin_user_path(user), method: :delete,
+                                    data: {confirm: 'Are you sure?'} %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  </div>

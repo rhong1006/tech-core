@@ -1,6 +1,10 @@
-<h1>Editing User</h1>
+<div class="row justify-content-center">
+  <div class="section-header text-center">
+    <h2 class="title">Edit User</h2>
+  </div>
 
-<%= render 'form', user: @user %>
-
-<%= link_to 'Show', @user %> |
-<%= link_to 'Back', users_path %>
+  <div class="col-xs-2 col-sm-3"></div>
+  <div class="col-xs-8 col-sm-6 form">
+    <%= render 'form', user: @user %>
+  </div>
+</div>

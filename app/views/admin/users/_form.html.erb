@@ -1,32 +1,22 @@
 <%= form_for @user, :url => {:action => 'create',
                                     :controller => 'admin/users'} do |form| %>
-
-  <div class="field">
-    <%= form.label :first_name %>
-    <%= form.text_field :first_name, id: :user_first_name %>
-  </div>
-
-  <div class="field">
-    <%= form.label :last_name %>
-    <%= form.text_field :last_name, id: :user_last_name %>
-  </div>
-
-  <div class="field">
-    <%= form.label :email %>
-    <%= form.text_field :email, id: :user_email %>
-  </div>
-
-  <div class="field">
-    <%= form.label :password %>
-    <%= form.password_field :password, id: :user_password %>
-  </div>
-
-  <div class="field">
-    <%= form.label :is_admin %>
-    <%= form.check_box :is_admin, id: :user_is_admin %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
+  <fieldset>
+    <%= form.text_field :first_name, class: "form-control", placeholder: "First name" %>
+  </fieldset>
+  <fieldset>
+    <%= form.text_field :last_name, class: "form-control", placeholder: "Last name" %>
+  </fieldset>
+  <fieldset>
+    <%= form.email_field :email, class: "form-control", placeholder: "Email", autocomplete: "off" %>
+  </fieldset>
+  <fieldset>
+    <%= form.password_field :password, class: "form-control", placeholder: "Password", autocomplete: "off" %>
+  </fieldset>
+  <fieldset>
+    <%= form.check_box :is_admin, class: "", placeholder: "Is Admin?" %>
+    <%= form.label :is_admin, class: "", placeholder: "Is Admin?" %>
+  </fieldset>
+  <div class="text-center">
+    <%= form.submit class: "btn btn-primary" %>
   </div>
 <% end %>
