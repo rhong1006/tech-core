@@ -20,6 +20,12 @@ body {
   border: 1px solid black;
 }
 
+.blog-img {
+  object-fit: cover;
+  height: 150px;
+  width: 100%;
+}
+
 .card > img {
   width: 200px;
   margin: 10px 20px;
