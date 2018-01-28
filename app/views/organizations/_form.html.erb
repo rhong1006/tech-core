@@ -1,11 +1,15 @@
 <%= form_with(model: organization, local: true) do |form| %>
 
-<!-- NOTE this organization erros message may have bugs if there is no error message? testing required -->
+  <% if organization.errors.any? %>
+    <div id="error_explanation">
+      <h4><%= pluralize(organization.errors.count, "error") %> prohibited this organization from being saved:</h4>
       <ul>
       <% organization.errors.full_messages.each do |message| %>
         <li><%= message %></li>
+      <% end %>
       </ul>
     </div>
+  <% end %>
 
   <fieldset>
     <%= form.text_field :name, class: "form-control", placeholder: "Name" %>
