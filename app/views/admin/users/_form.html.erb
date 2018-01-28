@@ -1,5 +1,4 @@
-<%= form_for @user, :url => {:action => 'create',
-                                    :controller => 'admin/users'} do |form| %>
+<%= form_for [:admin, @user] do |form| %>
 
   <div class="field">
     <%= form.label :first_name %>
@@ -14,11 +13,6 @@
   <div class="field">
     <%= form.label :email %>
     <%= form.text_field :email, id: :user_email %>
-  </div>
-
-  <div class="field">
-    <%= form.label :password %>
-    <%= form.password_field :password, id: :user_password %>
   </div>
 
   <div class="field">
