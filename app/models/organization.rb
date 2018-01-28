@@ -10,10 +10,10 @@ class Organization < ApplicationRecord
   # NOTE remove validations from seed file because the seed generates random text, not images
   # validates :logo, presence: true
 
+  # NOTE geocoded is overloaded and gives an API error
+  # geocoded_by :address
+  # after_validation :geocode
 
-  geocoded_by :address
-  after_validation :geocode
-  
   scope :search_by_name, -> (name) {
     where("name ILIKE  '%#{name}%'")
   }
