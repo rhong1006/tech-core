@@ -5,13 +5,14 @@ class SessionsController < ApplicationController
 
   def create
     user = User.find_by(email: session_params[:email])
-
+    
     if user && user.authenticate(session_params[:password])
       session[:user_id] = user.id
       flash[:notice] = 'Thank you for sign in!'
       if current_user.is_admin?
-        redirect_to admin_path
+        redirect_to admin_organizations_path
       else
+        flash[:alert] = 'entrou no else'
         redirect_to organizations_path
       end
     else
