@@ -1,8 +1,11 @@
 <%= form_for @event, :url => {:action => 'create',
+  :controller => 'events'} do |form| %>
 
-                                    :controller => 'events'} do |form| %>
-
-
+  <% if @event.errors.present? %>
+    <p>
+      <%= @event.errors.full_messages.join(', ') %>
+    </p>
+  <% end %>
   <div class="field">
     <%= form.label :title %>
     <%= form.text_field :title, id: :event_title %>

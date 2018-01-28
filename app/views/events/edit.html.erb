@@ -1,6 +1,11 @@
 <h1>Editing Event</h1>
 
 <%= form_for @event do |form|  %>
+  <% if @event.errors.present? %>
+    <p>
+      <%= @event.errors.full_messages.join(', ') %>
+    </p>
+  <% end %>
   <div class="field">
     <%= form.label :title %>
     <%= form.text_field :title, id: :event_title %>
