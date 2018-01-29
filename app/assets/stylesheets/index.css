@@ -8,7 +8,7 @@ main {
 }
 
 .pager{
-  margin: 30px;
+  margin-bottom: 5px;
 }
 
 fieldset, .field {
@@ -60,6 +60,19 @@ form {
 }
 
 .box-shadow { box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05); }
+
+.card > .aboutImg {
+  max-width: 210px;
+  max-height: 210px;
+  margin: 20px 20px;
+}
+.aboutCard {
+    position: relative;
+    text-align: center;
+    border: 1px solid #EEE;
+    margin: 15px 0px;
+    width: 250px;
+}
 
 .news_api_link {
   margin-top: 0px;

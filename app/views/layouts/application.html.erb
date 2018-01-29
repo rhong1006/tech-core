@@ -67,9 +67,9 @@
                 <% if current_user&.organizations.present? && !current_user.is_admin? %>
 
                   <li><%= link_to current_user.organizations.first.name, organization_path(current_user.organizations.first) %></li>
+                  <li><%= link_to 'Create Event', new_organization_event_path(current_user) %></li>
 
                 <!-- User without organization -->
-                <li><%= link_to 'Create Event', new_organization_event_path(current_user) %></li>
                 <% elsif current_user && !current_user.is_admin? %>
                   <li><%= link_to("Create Organization", new_organization_path) %></li>
                 <% end %>
@@ -85,13 +85,13 @@
   						</ul>
   					</li>
             <% else %>
-              <li class="nav-item"></li>
-              <li class="nav-item"></li>
               <li><%= link_to 'Sign Up', new_user_path %></li>
               <li><%= link_to 'Login', new_session_path %></li>
             <% end %>
   				</ul>
   				<!-- /Main navigation -->
+
+
 
   			</div>
   		</nav>
@@ -255,5 +255,6 @@
   		</div>
   	</div>
   	<!-- /Preloader -->
+  	<script type="text/javascript" src="js/main.js"></script>
 </body>
-  </html>
+</html>
