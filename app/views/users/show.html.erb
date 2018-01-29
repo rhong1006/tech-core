@@ -21,10 +21,11 @@
 			</div>
 		</div>
 
-    <hr>
-    <%= link_to 'Edit Account', edit_user_path(current_user), class: "btn btn-primary"  %>
+    <% if can?(:crud, @user) %>
+      <%= link_to 'Edit Account', edit_user_path(@user), class: "btn btn-primary"  %>
 
-    <%= link_to 'Delete Account', user_path(@user),
-    method: :delete, data: {confirm: 'Are you sure?'}, class: "btn btn-danger"  %>
+      <%= link_to 'Delete Account', user_path(@user),
+      method: :delete, data: {confirm: 'Are you sure?'}, class: "btn btn-danger"  %>
+      <% end %>
   </div>
 </div>

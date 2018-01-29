@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
+  before_action :authorize_user!, only: [:edit, :update, :destroy]
 
   # GET /users/1
   def show
@@ -65,6 +66,13 @@ class UsersController < ApplicationController
       :password_confirmation,
       :is_admin
     )
+  end
+
+  def authorize_user!
+    unless can?(:crud, @user)
+      flash[:alert] = "Access Denied!"
+      redirect_to home_path
+    end
   end
 
 
