@@ -18,14 +18,13 @@ class NewsController < ApplicationController
     newsapi = News.new("c4b4a385626c44c892860ce47a35dc7a")
     @all_articles = newsapi.get_everything(
       q: 'tech',
-      sources: 'bbc-news,the-verge',
-      domains: 'bbc.co.uk,techcrunch.com',
-      from: '2017-12-01',
-      to: '2017-12-12',
+      sources: 'reuters,bbc-news,the-verge',
+      domains: 'reuters.com,bbc.co.uk,techcrunch.com',
+      # from: '2017-12-01',
       language: 'en',
       sortBy: 'relevancy',
-      page: 2
     )
+    @all_articles_ordered = @all_articles.sort!{ |a1,a2| a2.publishedAt <=> a1.publishedAt }
   end
 
 end
