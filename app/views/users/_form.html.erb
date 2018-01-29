@@ -1,17 +1,19 @@
 
   <%= form_with(model: user, local: true) do |form| %>
 
-  <% if user.errors.any? %>
+
+  <div id="alert" class="alert alert-warning" role="alert">
+    <% if user.errors.any? %>
     <div id="error_explanation">
-      <h4><%= pluralize(user.errors.count, "error") %> prohibited this user from being saved:</h4>
 
       <ul>
-      <% user.errors.full_messages.each do |message| %>
+        <% user.errors.full_messages.each do |message| %>
         <li><%= message %></li>
-      <% end %>
+        <% end %>
       </ul>
     </div>
-  <% end %>
+    <% end %>
+  </div>
 
   <fieldset>
     <%= form.text_field :first_name, class: "form-control", placeholder: "First name" %>
