@@ -3,61 +3,64 @@
     <h2 class="title">Organization</h2>
   </div>
 
-  <% if @organization.logo.present? %>
-    <%= image_tag(@organization.logo, class:"img-responsive center-block") %>
-  <% else %>
-    <%= image_tag('placeholder.png', class:"img-responsive center-block") %>
-  <% end %>
+  <div class="row">
 
-<p>
-  <strong>Name:</strong>
-  <%= @organization.name %>
-</p>
+    <!-- why choose us content -->
+    <div class="col-md-6">
+      <div class="section-header">
+        <h2 class="title"><%= @organization.name %></h2>
+      </div>
+      <p><%= @organization.overview %></p>
+      <div class="feature">
+        <i class="fa fa-check"></i>
+        <p><strong>Address:</strong> <%= @organization.address %></p>
+      </div>
+      <div class="feature">
+        <i class="fa fa-check"></i>
+        <p><strong>Employees:</strong> <%= @organization.employees %> - <strong>Tech team size:</strong> <%= @organization.tech_team_size %></p>
+      </div>
+      <div class="feature">
+        <i class="fa fa-check"></i>
+        <p><strong>Website:</strong> <%= link_to @organization.website, @organization.website, target: "_blank" %></p>
+      </div>
+      <div class="feature">
+        <i class="fa fa-check"></i>
+        <p><strong>Twitter:</strong> <%= link_to @organization.twitter, @organization.twitter, target: "_blank" %></p>
+      </div>
+      <% if can?(:crud, @organization) %>
+        <!-- only owners of an organization can see publish status -->
+        <div class="feature">
+          <i class="fa fa-check"></i>
+          <p><strong>Published:</strong> <%= @organization.published %></p>
+        </div>
+        <!-- end of block -->
+      <% end %>
 
-<p>
-  <strong>Address:</strong>
-  <%= @organization.address %>
-</p>
+    </div>
+    <!-- /why choose us content -->
 
-<p>
-  <strong>Overview:</strong>
-  <%= @organization.overview %>
-</p>
+    <!-- About slider -->
+    <div class="col-md-6">
+      <% if @organization.logo.present? %>
+        <%= image_tag(@organization.logo, class:"img-responsive center-block") %>
+      <% else %>
+        <%= image_tag('placeholder.png', class:"img-responsive center-block") %>
+      <% end %>
+    </div>
+    <!-- /About slider -->
 
-<p>
-  <strong>Employees:</strong>
-  <%= @organization.employees %>
-</p>
-
-<p>
-  <strong>Tech team size:</strong>
-  <%= @organization.tech_team_size %>
-</p>
-
-<p>
-  <strong>Website:</strong>
-  <%= @organization.website %>
-</p>
-
-<p>
-  <strong>Twitter:</strong>
-  <%= @organization.twitter %>
-</p>
-
-<% if can?(:crud, @organization) %>
-<!-- only owners of an organization can see publish status -->
-  <p>
-    <strong>Published:</strong>
-    <%= @organization.published %>
-  </p>
-<!--  end of block -->
-  <div class="section-header text-center">
-    <h2 class="title">Update Organization</h2>
   </div>
-  <%= render 'edit_form' %>
-  <!-- Moved delete button to edit form template <%= link_to 'Delete My Organization',
-    organization_path(@organization),
-    method: :delete, data: {confirm: 'Are you sure?'}, class: "btn btn-danger"  %> -->
-<% end %>
+
+
+<hr>
+
+
+  <% if can?(:crud, @organization) %>
+    <div class="section-header text-center">
+      <h2 class="title">Update Organization</h2>
+    </div>
+    <%= render 'edit_form' %>
+    <!-- Moved delete button to edit form template <%= link_to 'Delete My Organization', organization_path(@organization), method: :delete, data: {confirm: 'Are you sure?'}, class: "btn btn-danger" %> -->
+  <% end %>
 
 </div>
