@@ -1,24 +1,38 @@
-# README
+# techCore: Growing the tech community
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+### Find - Learn - Connect - Share
 
-Things you may want to cover:
+![alt text](https://github.com/Shaun-Schwartz/tech-core/blob/integration/app/assets/images/techcore-logo.png "techCore")
 
-* Ruby version
 
-* System dependencies
+Given the task of creating a Meetup Clone ('TechCore') exclusively for Tech Companies, this project is designed to allow users to create organizations and show their upcoming events and news. With an initial timeline of two days the focus is to implement critical features before those less important.
 
-* Configuration
+The App allows companies to advertise their upcoming events and news to users.
 
-* Database creation
+Project TechCore allows companies to create an organization page, which they can use to advertise events and related news. Visitors to the site will see a list of companies filterable by search as well as an events calendar and news page. Admins moderate organizations and users through an admin panel.
 
-* Database initialization
+## Setup:
+```
+Run the following commands in the project directory:
 
-* How to run the test suite
+$ bundle
+$ rails db:create
+$ rails db:migrate
+$ rails db:seed
+$ rails s
 
-* Services (job queues, cache servers, search engines, etc.)
+Open on localhost:3000
+```
 
-* Deployment instructions
+## Technologies used:
+- Ruby on Rails
+- Bootstrap
+- jQuery
 
-* ...
+## Team Members:
+* Brooklin (Project Manager)
+* Rina
+* Shaun
+* Jack
+* Gustavo
+* Wellington

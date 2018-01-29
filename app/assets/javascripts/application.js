@@ -10,5 +10,14 @@
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //
+//= require jquery3
+//= require chosen-jquery
+//= require popper
+//= require bootstrap
 //= require rails-ujs
+//= require underscore
+//= require gmaps/google
+//= require moment
+//= require fullcalendar
+//= require fullcalendar/gcal
 //= require_tree .

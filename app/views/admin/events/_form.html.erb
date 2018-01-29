@@ -1,0 +1,22 @@
+<%= form_for @event, :url => {:action => 'create',
+                                    :controller => 'admin/events'} do |form| %>
+  <fieldset>
+    <%= form.text_field :title, class: "form-control", placeholder: "Title" %>
+  </fieldset>
+  <fieldset>
+    <%= form.text_area :description, class: "form-control", placeholder: "Description" %>
+  </fieldset>
+  <fieldset>
+    <%= form.text_field :location, class: "form-control", placeholder: "Location" %>
+  </fieldset>
+  <fieldset>
+    <%= form.datetime_select :start_time, class: "form-control", placeholder: "Start date" %>
+  </fieldset>
+  <fieldset>
+    <%= form.datetime_select :end_time, class: "form-control", placeholder: "End date" %>
+  </fieldset>
+
+  <div class="text-center">
+    <%= form.submit class: "btn btn-primary" %>
+  </div>
+<% end %>

@@ -1,0 +1,37 @@
+<div class="row justify-content-center">
+  <div class="section-header text-center">
+    <h2 class="title">Events (Admin)</h2>
+  </div>
+
+  <%= render 'form', event: @event %>
+
+  <hr>
+
+  <div class="section-header text-center">
+    <h2 class="title">Events List (Admin)</h2>
+  </div>
+
+  <table class="table table-striped">
+    <thead>
+      <tr class="">
+        <th scope="col">Event</th>
+        <th scope="col">Description</th>
+        <th scope="col">Location</th>
+        <th scope="col">Created</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @events.each do |event| %>
+        <tr>
+          <td><%= link_to event.title, event_path(event) %></td>
+          <td><%= event.description %></td>
+          <td><%= event.location %></td>
+          <td><%= event.created_at %></td>
+          <td><%= link_to 'Delete', admin_event_path(event), method: :delete,
+                                    data: {confirm: 'Are you sure?'} %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  </div>

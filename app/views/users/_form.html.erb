@@ -1,0 +1,42 @@
+
+  <%= form_with(model: user, local: true) do |form| %>
+
+  <% if user.errors.any? %>
+  <div id="alert" class="alert alert-warning" role="alert">
+    <div id="error_explanation">
+      <ul>
+        <% user.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+        <% end %>
+      </ul>
+      </div>
+    </div>
+  <% end %>
+  <fieldset>
+    <%= form.text_field :first_name, class: "form-control", placeholder: "First name" %>
+  </fieldset>
+  <fieldset>
+    <%= form.text_field :last_name, class: "form-control", placeholder: "Last name" %>
+  </fieldset>
+  <fieldset>
+    <%= form.email_field :email, class: "form-control", placeholder: "Email" %>
+  </fieldset>
+
+  <% if current_user&.is_admin? %>
+    <fieldset>
+      <%= form.label :is_admin, 'Is administrator?' %>
+      <%= form.check_box :is_admin %>
+    </fieldset>
+  <% else %>
+    <fieldset>
+      <%= form.password_field :password, class: "form-control", placeholder: "Password" %>
+    </fieldset>
+    <fieldset>
+      <%= form.password_field :password_confirmation, class: "form-control", placeholder: "Password confirmation" %>
+    </fieldset>
+  <% end %>
+
+  <div class="text-center">
+    <%= form.submit 'Submit', class: "btn btn-primary" %>
+  </div>
+<% end %>

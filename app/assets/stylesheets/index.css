@@ -1,0 +1,81 @@
+body {
+  margin: 0;
+}
+
+main {
+  min-height: 60vh;
+  margin-bottom: 30px;
+}
+
+.pager{
+  margin-bottom: 5px;
+}
+
+fieldset, .field {
+  margin: 8px !important;
+}
+
+
+form {
+  margin-bottom: 25px;
+}
+
+.form {
+  min-width: 350px;
+}
+
+.has-error > .help-block {
+  color: red;
+}
+
+.nav-link {
+  margin: 20px;
+}
+
+#messages {
+  margin-top: 20px;
+}
+
+#map {
+  margin-top: 20px;
+  border-radius: 20px;
+  border: 1px solid black;
+}
+
+.blog-img {
+  object-fit: cover;
+  height: 150px;
+  width: 100%;
+}
+
+.card :hover {
+  cursor: pointer;
+}
+
+.card > img {
+  object-fit: cover;
+  max-width: 200px;
+  max-height: 140px;
+  margin: 10px 20px;
+}
+
+.box-shadow { box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05); }
+
+.card > .aboutImg {
+  max-width: 210px;
+  max-height: 210px;
+  margin: 20px 20px;
+}
+.aboutCard {
+    position: relative;
+    text-align: center;
+    border: 1px solid #EEE;
+    margin: 15px 0px;
+    width: 250px;
+}
+
+.news_api_link {
+  margin-top: 0px;
+  font-size: 10px;
+  font-weight: normal;
+}

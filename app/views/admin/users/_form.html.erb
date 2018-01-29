@@ -1,0 +1,25 @@
+<%= form_for @user, :url => {:action => 'create',
+                                    :controller => 'admin/users'} do |form| %>
+  <fieldset>
+    <%= form.text_field :first_name, class: "form-control", placeholder: "First name" %>
+  </fieldset>
+  <fieldset>
+    <%= form.text_field :last_name, class: "form-control", placeholder: "Last name" %>
+  </fieldset>
+  <fieldset>
+    <%= form.email_field :email, class: "form-control", placeholder: "Email", autocomplete: "off" %>
+  </fieldset>
+  <fieldset>
+    <%= form.password_field :password, class: "form-control", placeholder: "Password" %>
+  </fieldset>
+  <fieldset>
+    <%= form.password_field :password_confirmation, class: "form-control", placeholder: "Password confirmation" %>
+  </fieldset>
+  <fieldset>
+    <%= form.check_box :is_admin, class: "", placeholder: "Is Admin?" %>
+    <%= form.label :is_admin, class: "", placeholder: "Is Admin?" %>
+  </fieldset>
+  <div class="text-center">
+    <%= form.submit class: "btn btn-primary" %>
+  </div>
+<% end %>

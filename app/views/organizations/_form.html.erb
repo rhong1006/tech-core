@@ -1,0 +1,45 @@
+<%= form_with(model: organization, local: true) do |form| %>
+
+  <% if organization.errors.any? %>
+    <div id="error_explanation">
+      <h4><%= pluralize(organization.errors.count, "error") %> prohibited this organization from being saved:</h4>
+      <ul>
+      <% organization.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+<fieldset>
+  <%= form.text_field :name, class: "form-control", placeholder: "Name" %>
+</fieldset>
+<fieldset>
+  <%= form.text_field :address, class: "form-control", placeholder: "Address" %>
+</fieldset>
+<fieldset>
+  <%= form.text_area :overview, class: "form-control", placeholder: "Overview" %>
+</fieldset>
+<fieldset>
+  <%= form.number_field :employees, class: "form-control", placeholder: "Employees" %>
+</fieldset>
+<fieldset>
+  <%= form.number_field :tech_team_size, class: "form-control", placeholder: "Tech team size" %>
+</fieldset>
+<fieldset>
+  <%= form.text_field :website, class: "form-control", placeholder: "Website" %>
+</fieldset>
+<fieldset>
+  <%= form.text_field :twitter, class: "form-control", placeholder: "Twitter" %>
+</fieldset>
+<fieldset>
+  <%= form.file_field :logo, class: "form-control", placeholder: "Logo" %>
+</fieldset>
+<fieldset>
+  <%= form.check_box :published, class: "", placeholder: "Published" %>
+  <%= form.label :published, class: "", placeholder: "Published" %>
+</fieldset>
+<div class="text-center">
+  <%= form.submit class: "btn btn-primary" %>
+</div>
+<% end %>

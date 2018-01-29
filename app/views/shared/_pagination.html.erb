@@ -1,0 +1,32 @@
+<div class="row justify-content-center">
+<ul class="pager">
+  <%
+    actualPage = @actualPage.to_i
+    totalItens = @totalItens.to_f
+    itensPerPage = @itensPerPage.to_f
+    nextDisabled = ''
+    totalPages = (totalItens / itensPerPage).ceil
+    if totalPages == actualPage
+      nextDisabled = 'disabled'
+    end
+    if actualPage == 1
+      previousPage = 0
+      nextPage = 2
+    else
+      previousPage = actualPage - 1
+      nextPage = actualPage + 1
+    end
+  %>
+  <% if actualPage == 1 %>
+    <li class="previous disabled"><a href="javascript:void(0)">&larr; Previous</a></li>
+  <% else %>
+    <li class="previous"><a href="?page=<%= previousPage %>">&larr; Previous</a></li>
+  <% end %>
+  page <%= actualPage %> of <%= totalPages %>
+  <% if totalPages == actualPage %>
+    <li class="next disabled"><a href="javascript:void(0)">Next &rarr;</a></li>
+  <% else %>
+    <li class="next"><a href="?page=<%= nextPage %>">Next &rarr;</a></li>
+  <% end %>
+</ul>
+</div>

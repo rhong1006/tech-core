@@ -1,0 +1,53 @@
+<div class="row justify-content-center">
+  <div class="section-header text-center">
+    <h2 class="title">Events</h2>
+  </div>
+
+<div id="calendar"></div>
+<script type="text/javascript">
+$('#calendar').fullCalendar({
+  events: '/events.json',
+  weekMode: 'liquid',
+  defaultView: 'agendaWeek',
+  header: {
+    left: 'today prev,next',
+    center: 'title',
+    right: 'agendaDay,agendaWeek,month',
+        },
+  // editable: true,
+  // selectable: true,
+  // selectHelper: true
+});
+</script>
+
+<hr>
+
+  <div class="section-header text-center">
+    <h2 class="title">Events List</h2>
+  </div>
+
+<table class="table table-striped">
+  <thead>
+    <tr class="">
+      <th scope="col">Event</th>
+      <th scope="col">Location</th>
+      <th scope="col">Time</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @events.each do |event| %>
+      <tr>
+        <td><%= link_to "#{event.title}", event %></td>
+        <td><%= event.location %></td>
+        <td><%= event.start_time.strftime("%b %d %l%p") %></td>
+        <td><%#= link_to 'Edit', edit_event_path(event) %></td>
+        <!-- edit event path is not yet set up -->
+        <td><%#= link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= render '/shared/pagination' %>
+</div>

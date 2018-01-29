@@ -1,0 +1,34 @@
+<div class="row">
+  <div class="section-header text-center">
+    <h2 class="title">Organization (Admin)</h2>
+  </div>
+
+<%= render 'form', organization: @organization %>
+
+<hr>
+
+<div class="section-header text-center">
+  <h2 class="title">Organizations list (Admin)</h2>
+</div>
+
+<table>
+  <tbody>
+    <tr>
+      <th>Organization Name</th>
+      <th>Published</th>
+      <th style="padding-left:10px">Action</th>
+    </tr>
+
+    <% @organizations.each do |organization| %>
+      <tr>
+        <td><%= organization.name %></td>
+        <td><%= organization.published %></td>
+        <td style="padding-left:10px"><%= link_to 'Show', organization %>
+          <%= link_to 'Delete', admin_organization_path(organization), method: :delete,
+                                    data: {confirm: 'Are you sure?'} %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+</div>
