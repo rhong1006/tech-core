@@ -60,3 +60,9 @@ form {
 }
 
 .box-shadow { box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05); }
+
+.news_api_link {
+  margin-top: 0px;
+  font-size: 10px;
+  font-weight: normal;
+}
