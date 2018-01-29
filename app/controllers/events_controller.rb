@@ -10,7 +10,7 @@ class EventsController < ApplicationController
     if params[:page].to_i > 1
       @actualPage = params[:page]
     end
-    @events = Event.paginate(:page => @actualPage, :per_page => @itensPerPage)
+    @events = Event.where("start_time > ?", DateTime.now).order(start_time: :ASC).paginate(:page => @actualPage, :per_page => @itensPerPage)
     # @events = Event.all
     @totalItens = Event.all.count
   end
