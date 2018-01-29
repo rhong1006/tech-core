@@ -31,4 +31,5 @@ class Organization < ApplicationRecord
     where("tech_team_size <= #{team_size}+5 AND tech_team_size >= #{team_size}-5")
   }
 
+
 end

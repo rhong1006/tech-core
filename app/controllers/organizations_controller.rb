@@ -2,6 +2,7 @@ class OrganizationsController < ApplicationController
   before_action :authenticate_user!, except: [:show, :index]
   before_action :set_organization, only: [:show, :edit, :update, :destroy]
   before_action :authorize_user!, only: [:edit, :update, :destroy]
+  before_action :pagination_org, only: [:index]
 
   def index
     # Get params matching :organization
@@ -18,7 +19,7 @@ class OrganizationsController < ApplicationController
         @organizations = Organization.search_by_tech_size(keyword.to_i).order(name: :asc)
       end
     else
-        @organizations = Organization.all.order(name: :asc);
+        @organizations = Organization.paginate(:page => @actualPage, :per_page => @itemsPerPage);
     end
 
     # Send localizations for index page
@@ -106,5 +107,17 @@ class OrganizationsController < ApplicationController
         flash[:alert] = "Access Denied!"
         redirect_to home_path
       end
+    end
+
+
+    def pagination_org
+      @itemsPerPage = 12
+      @actualPage = 1
+      if params[:page].to_i > 1
+        @actualPage = params[:page]
+      end
+      @organizations = Organization.paginate(:page => @actualPage, :per_page => @itemsPerPage)
+      # @events = Event.all
+      @totalItens = @organizations.all.count
     end
 end
