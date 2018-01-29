@@ -49,7 +49,7 @@ users.each do |user|
     address: "Vancouver, BC #{postal_codes_van[rand(0..354)]}, Canada",
     latitude: 49.2780017  + (rand(1000) / 10000.0),
     longitude: -123.1203521 + (rand(1000) / 10000.0),
-    overview: rand(5..20).times.each do Faker::Company.catch_phrase end,
+    overview: Faker::Lorem.paragraph(4),
     employees: rand(50..100),
     tech_team_size: rand(10..25),
     website: Faker::Internet.url,
