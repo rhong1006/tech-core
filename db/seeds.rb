@@ -7,15 +7,14 @@ User.destroy_all
 Tag.destroy_all
 Tagging.destroy_all
 
-PASSWORD = '123'
-
+PASSWORD = 'password'
 
 
 # Admin with Company
 super_user = User.create(
-  first_name: 'Alexander',
-  last_name: 'a',
-  email: 'a@a.a',
+  first_name: 'Jon',
+  last_name: 'Snow',
+  email: 'js@example.com',
   password: PASSWORD,
   is_admin: true
 )
